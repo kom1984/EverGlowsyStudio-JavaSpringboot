@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head
+    th:replace="fragments/generalAdmin.html :: head">
+</head>
+<body>
+<!-- Admin Header -->
+<div th:replace="fragments/generalAdmin.html :: header">
+
+</div>
+
+<!-- Admin Main Content -->
+<div class="container-fluid" >
+    <div class="row" >
+        <!-- Sidebar -->
+        <nav th:replace="fragments/generalAdmin.html :: sidebar">
+
+        </nav>
+        <!-- Main Content -->
+        <main
+                role="main"
+                class="col-md-9 ml-sm-auto col-lg-10 px-4 admin-content"
+        >
+            <!-- Page content goes here -->
+            <h2>Dashboard</h2>
+            <p>Welcome to the EverGlowsy-Studio Admin Dashboard.</p>
+
+        </main>
+
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script th:src="@{js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

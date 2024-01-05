@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head
+    th:replace="fragments/general.html :: head">
+
+</head>
+<body>
+<nav
+    th:replace="fragments/general.html :: navbar">
+
+</nav>
+
+<div class="banner">
+
+    <div class="container">
+        <h1>EverGlowsy-Studio</h1>
+        <p>Prenez du temps pour vous. Nous garantissons la mise en valeur de votre beauté..</p>
+        <a href="#appointments" class="btn" id="btnId">Prenez RDV</a>
+
+
+    </div>
+</div>
+
+<!-- about section starts -->
+<section id="about" class="about section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-12 mt-md-5">
+                <div class="about-img">
+                    <img  class="img-fluid" id="about-text-img1"
+                          th:src="@{images/hairdressing-salon.jpg}"
+                            alt="studio"/>
+                    <img  class="img-fluid  mt-md-5" id="about-text-img2"
+                          th:src="@{images/studio2.jpg}"
+                          alt="studio"/>
+
+
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5">
+                <div class="about-text">
+                    <h2>
+                        EVERGLOWSY STUDIO- Qui Nous Sommes?
+                    </h2>
+                    <p>"
+                        <b>
+                        <span class="italique">
+                        La beauté comme le talent, pour avoir toute sa perfection, a besoin que la politesse lui serve de vernis.
+                            </span>
+                            "
+                            Goswin de Stassart
+                       </b>
+                        </p>
+                    <h3>Introduction</h3>
+                    <p>
+                        Passionnée dès le plus jeune âge par le monde de la beauté car
+                    <span class="italique">
+                        " être toujours présentable et coquette,c'est une question de respect
+                        de soi et des autres "
+                    </span>
+                    , Mariam s'est très vite lancée dans les études d'esthétique.
+                    </p>
+                    <p>
+                      Elle obtient son
+                        <b> CAP Esthétique</b>
+                        en 2008 puis son
+                        <b> Baccaulauréat Professionnel Esthétique</b>
+                        en 2011.
+                    </p>
+                    <p>
+                        Participant aux
+                        <b> Olympiades des métiers</b>
+                        de 2012 dont elle en sort
+                        <b>
+                            <span class="italique">lauréate</span>
+                        </b>
+                        , elle obtient le titre de "
+                        <b> Meilleure Esthéticienne d'Île-de-France</b>".
+                    </p>
+                    Après
+                    <b>14 ans de pratique</b> et de perfectionnement,
+                    Mariam est devenue une spécialiste de la beauté et a acquis une<b> parfaite maîtrise</b>
+                    des techniques de soins et une bonne connaissances des produits cosmétiques.
+                    <p>
+                    Elle vous ouvre désormais les portes de son tout nouvel institut "<b> EverGlowsy-Studio</b>
+                        ."
+                    </p>
+                    <p>
+                    Quand une femme se rend chez l'esthéticienne, c'est pour prendre soin de son corps,passer un
+                        moment relaxant et très souvent se confier.
+                    </p>
+                    <p>
+                        <b> EverGlowsy-Studio</b>
+                        est un concept de soins esthétiques
+                        <span class="italique">100% féminins</span>
+                        .Vous y découvrirz un lieu de calme et de bien-être.
+
+
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- about section Ends -->
+<!-- services section Starts th:if="(${category.id_category} == ${serviceCategory.id_category})" th:each="serviceCategory:${all-service-category}"-->
+<section class="services section-padding" id="services">
+    <div class="container">
+         <h1 class="text-center mb-4">Prestations</h1>
+        <div class="row" >
+            <div class="col-md-6" >
+                    <table class="table table-borderless" th:each="category:${halfCategories1}">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <h5 th:text="${category.name_category}" class="text-uppercase mb-3"></h5>
+                                <ul class="list-group" th:each="service:${services}">
+                                    <li th:if="(${category.id_category} == ${service.category.id_category})" class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span th:text="${service.name_service}"> </span>
+                                        <div class="justify-content-end">
+                                        <span th:text="${service.price}" ></span>
+                                        <span th:utext="${' &#8364'}"></span>
+                                        </div>
+                                    </li>
+
+                                    <span  th:if="(${category.id_category} == ${service.category.id_category})"class="dashed-line"></span>
+                                </ul>
+
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            <div class="col-md-6" >
+                <table class="table table-borderless" th:each="category:${halfCategories2}">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <h5 th:text="${category.name_category}" class="text-uppercase mb-3"></h5>
+                            <ul class="list-group" th:each="service:${services}">
+                                <li th:if="(${category.id_category} == ${service.category.id_category})" class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span th:text="${service.name_service}"> </span>
+                                    <div class="justify-content-end">
+
+                                    <span  th:text="${service.price}"> </span>
+
+                                    <span  th:utext="${' &#8364'}"></span>
+                                    </div>
+                                </li>
+
+                                <span  th:if="(${category.id_category} == ${service.category.id_category})"class="dashed-line"></span>
+                            </ul>
+
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        <h2 class="text-center mb-4">Collaborateurs</h2>
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <p class="circle">M</p>
+                            <h3 class="card-title py-2">Mariam</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <p class="circle">K</p>
+                            <h3 class="card-title py-2">Kelly</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <p class="circle">S</p>
+                            <h3 class="card-title py-2">Stella</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <p class="circle">R</p>
+                            <h3 class="card-title py-2">Reshma</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+ </section>
+<!-- services section Ends -->
+
+<!-- galerie starts -->
+<section id="galerie" class="portfolio section-padding">
+    <div class="container gallery-section pb-5">
+        <h2 class="text-center">Our Gallery</h2>
+        <div class="row" >
+            <div th:each="service:${services}" class="col-md-4 mb-4">
+                <img
+                        th:src="${service.image}"
+                        class="img-fluid"
+                        alt="Beauty Salon Photo 1"
+                />
+            </div>
+            </div>
+    </div>
+</section>
+<!-- portfolio ends -->
+<!-- team starts -->
+<section class="team section-padding" id="appointments">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-header text-center pb-5">
+                    <h2>Prise Un Rendez-Vous</h2>
+
+                </div>
+            </div>
+            <div class="row" th:each="category:${categories}">
+                <div class="col-sm-10 mx-auto" >
+                    <div class="card">
+                        <div class="card-header text-uppercase" th:text="${category.name_category}">
+
+                        </div>
+                        <div class="card-body  d-flex justify-content-between" th:each="service:${services}" th:if="(${category.id_category} == ${service.category.id_category})">
+                            <h5 class="card-title" th:text="${service.name_service}"></h5>
+                            <div class="d-flex ">
+
+                                    <p class="card-text" th:text="${service.price}"> </p>
+                                    <span  th:utext="${'&#8364;'+'&nbsp;'+'&nbsp;'+'&nbsp;'}"></span>
+
+
+                                <div><p class="card-text" th:text="${service.time_service+'&nbsp;'+'&nbsp;'+'&nbsp;'}"> </p>
+
+                                </div>
+
+                                <div><a href="#" class="btn btn-secondary" >Choisir</a></div>
+                        </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- team ends -->
+<!-- Contact starts mt-5 mb-5-->
+<section id="contact" class="contact section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="section-header text-center mx-0 my-0 py-5" id="contactHeading">
+                    <h2 class="text-uppercase">Vous Souhaitez Prendre Rendez-vous? Appelez 01 23 45 67 89</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row pb-2 mb-2">
+            <div class="col-sm-10 mx-auto ">
+                <h2 class="text-center py-2">Contact</h2>
+                <div class="contactSec1 text-center d-flex justify-content-around">
+                    <div>
+                        <p class="location mb-2">LOCATION</p>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2621.59735792842!2d2.4689385766805403!3d48.92306307134094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e6134fcba6d0a1%3A0xf772e2b5db9bab34!2s13%20Av.%20Jean%20Jaur%C3%A8s%2C%2093150%20Le%20Blanc-Mesnil!5e0!3m2!1sfr!2sfr!4v1703941885568!5m2!1sfr!2sfr"
+                                class="map" allowfullscreen=""
+                                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div>
+                        <p class="info mb-2">INFORMATION</p>
+                        <div>
+                            <p class="shop mt-5">EVERGLOWSY STUDIO</p>
+                            <p>13-15 Avenue Jean Jaurès</p>
+                            <p> 93150 Le Blanc Mesnil</p>
+                            <p>Tél:01 23 45 67 89</p>
+                            <p>E-mail:everglowsy@mail.fr</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10 mx-auto ">
+                <div class="contactSec2 text-center d-flex justify-content-around">
+                    <div>
+                        <p class="shop">ADRESSE</p>
+                        <p>13-15 Avenue Jean Jaurès</p>
+                        <p> 93150 Le Blanc Mesnil</p>
+                    </div>
+                    <div>
+                        <p class="shop">HORAIRES</p>
+                        <p>Lundi-Vendredi:10:00-19:30</p>
+                        <p>Samedi:10:00-18:30</p>
+                    </div>
+                    <div>
+                        <p class="shop">CONTACT</p>
+                        <p>Tél:01 23 45 67 89</p>
+                        <p>E-mail:everglowsy@mail.fr</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- contact ends -->
+<!-- footer starts -->
+<footer
+    th:replace="fragments/general.html :: footer">
+
+</footer>
+<!-- footer ends -->
+
+<script th:src="@{js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

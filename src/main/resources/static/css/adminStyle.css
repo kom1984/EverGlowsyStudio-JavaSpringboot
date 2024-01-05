@@ -1,0 +1,35 @@
+body {
+          background-color: #f8f9fa;
+        }
+
+        .admin-header {
+
+        background-color:#ff8fab;;
+          /*background-color: #007bff;
+          color: #fff;*/
+          color:#213F99;
+          padding: 15px;
+        }
+
+        .admin-sidebar {
+        background: #213F99;
+          /*background-color: #343a40;*/
+          color: #fff;
+          height: 100vh;
+        }
+
+        .admin-content {
+          padding: 20px;
+        }
+
+        .admin-sidebar a {
+          color: #fff;
+        }
+
+        .admin-sidebar a:hover {
+          background-color: #6c757d;
+        }
+
+
+
+

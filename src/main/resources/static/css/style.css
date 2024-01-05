@@ -1,0 +1,373 @@
+* {
+	font-family: 'Roboto Flex', sans-serif;
+	color:#213F99;
+	font-weight: 300;
+    }
+body {
+	background:#fff;
+    }
+.section-padding
+    {
+	padding-top: 85px;
+	padding-right:0px;
+	padding-left:0px;
+	padding-bottom:10px;
+    }
+.banner {
+      position: relative;
+      text-align: center;
+      /*color: #fff;*/
+      background: url('../images/woman2.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
+      min-height:100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+.banner h1
+    {
+      font-size: 5em;
+
+  }
+.banner p
+    {
+        font-size: 3em;
+
+    }
+
+ #btnId{
+ width:150px;
+     height:40px;
+     background-color:#ff8fab;
+     color:#213F99;
+     font-size:20px;
+ }
+ #btnId:hover{
+ background-color:#ff8fab;
+      color:#fff;
+ }
+    .navbar{
+    background-color:#ff8fab;
+    }
+
+.navbar .getstarted{
+	margin-left: 30px;
+	border-radius: 4px;
+	font-weight: 400;
+	text-decoration: none;
+	padding: .5rem 1rem;
+	line-height: 2.3;
+}
+.navbar-nav a{
+	font-size: 18px;
+	position: relative;
+	text-transform: uppercase;
+	font-weight: 500;
+	padding:0 4px;
+}
+ a:after{
+	content:" ";
+	position:absolute;
+	background-color:#213F99;
+	height:3px;
+	width:0;
+	left:0;
+	bottom:-3px;
+	transition:0.3s;
+}
+
+/*logoname designe*/
+.navbar-light .navbar-brand {
+    color:#213F99;
+	font-size: 30px;
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: 5px;
+}
+.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+
+	color: #fff;
+	
+}
+.navbar-light .navbar-nav .nav-link {
+     color:#213F99;
+     letter-spacing: 1px;
+    font-weight: 500;
+	
+}
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+	/*border: 3px gray solid;
+	background-color:#F2D4D6 ;	
+	border-radius : 3px;
+	box-shadow: 2px 2px 4px black;
+		text-decoration: underline;
+		color: #F2D4D6;*/
+		color:#fff;
+}
+.nav-item a:hover:after{
+	width:100%;
+	
+  
+}
+
+.category {
+    margin-bottom: 20px;
+}
+.dashed-line {
+        display: inline-block;
+        width: 100%;
+        border-bottom: 1px dashed #ddd;
+        margin-bottom: 8px;
+      }
+
+.circle {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background-color:#ff8fab;
+        color: #fff;
+        text-align: center;
+        line-height: 30px;
+        font-size: 16px; }
+.w-100 {
+	height: 100vh;
+}
+.navbar-toggler {
+	padding: 1px 5px;
+	font-size: 18px;
+	line-height: 0.3;
+	background: #fff;
+}
+.about-text p{
+line-height:24px;
+font-size:16px;
+margin:15px 0 30px;
+}
+#about-text-img1{
+/*border-style:outset;*/
+border-style:inset;
+border-width:1px;
+border-color:#213F99;
+}
+#about-text-img2{
+border-style:solid;
+/*border-style:outset;*/
+border-width:1px;
+border-color:#213F99;
+}
+.about-text b{
+color:#ff8fab;
+font-weight:450;
+}
+
+.list-group-item{
+border-style:none;
+}
+
+
+.portfolio .card {
+	box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.15);
+}
+.team .card {
+	box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.team .card-body i {
+	font-size: 20px;
+}
+#contactHeading{
+background-color:#213F99;
+color:#ff8fab;
+letter-spacing:2px;
+}
+
+.location{
+font-size:35px;
+}
+.info{
+font-size:35px;
+}
+.shop{
+color:#ff8fab;
+font-size:20px;
+font-weight:450;
+}
+.map{
+width:600px;
+height:450px;
+border-style:solid;
+border-width:1px;
+border-color:#213F99;
+
+}
+#footerId{
+background-color:#ff8fab;
+}
+#footerPara{
+color:#213F99! important;
+}
+ /*-----------------------------------------Media Query(within 768 AND 991px)---------------------------------------------------*/
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+.banner h1
+    {
+    font-size:35px;
+	letter-spacing:3px;
+	}
+	.banner p{
+    	font-size:30px;
+    	}
+
+	.card {
+		margin-bottom: 30px;
+	}
+	.img-area img {
+		width: 100%;
+	}
+	.nav-item a:hover:after{
+		width:0px;  
+	}
+
+	#dashid{
+        	display:none;
+        	}
+        	 #priceid
+                {
+               padding-left:200px;
+
+                }
+
+                .contactSec1{
+                display:inline-block!important;
+                }
+                .map{
+                width:450px;
+                height:300px;
+                }
+                .location{
+                font-size:20px;
+                }
+                .info{
+                font-size:20px;
+                margin-top:30px;
+                margin-bottom:10px;
+                }
+
+}
+ /*-----------------------------------------Media Query(within 767px)---------------------------------------------------*/
+@media only screen and (max-width: 767px)
+{
+.navbar-light .navbar-brand
+ {
+    font-size: 25px;
+    letter-spacing: 2px;
+    }
+.banner h1
+        {
+    font-size:30px;
+    letter-spacing: 3px;
+
+	}
+	.banner p{
+    	font-size:25px;
+
+    	}
+	.navbar-nav {
+		text-align: center;
+	}
+	.about-text {
+		padding-top: 50px;
+	}
+	.card {
+		margin-bottom: 30px;
+	}
+	.nav-item a:hover:after{
+			width:0px;
+		}
+
+		#dashid{
+            	display:none;
+            	}
+            	 #priceid
+                    {
+                    padding-left:200px;
+                    }
+
+                    .contactSec1{
+                    display:inline-block!important;
+                    }
+                    .map{
+                    width:350px;
+                    height:300px;
+                    }
+                    .location{
+                    font-size:20px;
+                    }
+                    .info{
+                    font-size:20px;
+                    margin-top:30px;
+                    margin-bottom:10px;
+                    }
+
+                    .contactSec2{
+                    display:inline-block!important;
+                    }
+            	}
+ /*-----------------------------------------Media Query(within 320px)---------------------------------------------------*/
+@media only screen and (max-width: 320px)
+{
+    .navbar-light .navbar-brand
+    {
+    font-size: 18px;
+    letter-spacing: 2px;
+    }
+
+	.navbar .container .navbar-brand{		
+		font-size: 20px;
+	}
+	.banner{
+	padding:10px;
+	}
+	.banner h1{
+	font-size:25px;
+	letter-spacing:2px;
+
+	}
+	.banner p{
+    	font-size:20px;
+
+    	}
+    	#dashid{
+    	display:none;
+    	}
+    #priceid
+    {
+    padding-left:150px;
+    }
+.card-body{
+display:inline-block!important;
+}
+.contactSec1{
+display:inline-block!important;
+}
+.map{
+width:250px;
+height:200px;
+}
+.location{
+font-size:20px;
+}
+.info{
+font-size:20px;
+margin-top:30px;
+margin-bottom:10px;
+}
+
+.contactSec2{
+display:inline-block!important;
+
+}
+}
