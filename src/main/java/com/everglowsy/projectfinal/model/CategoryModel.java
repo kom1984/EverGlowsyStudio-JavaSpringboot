@@ -27,8 +27,8 @@ public class CategoryModel {
     @Column(name="NAME_CATEGORY")
     private String name_category;
 
-    @OneToMany(mappedBy = "category")
-    private List<ServiceHandledModel> serviceHandledModel;
+    /*@OneToMany(cascade = CascadeType.ALL,mappedBy = "category")
+    private List<ServiceHandledModel> serviceHandledModel;*/
 
 
 }

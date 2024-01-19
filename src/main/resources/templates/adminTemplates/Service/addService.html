@@ -1,10 +1,162 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head
+        th:replace="fragments/generalAdmin.html :: head">
 </head>
 <body>
+<!-- Admin Header -->
+<div th:replace="fragments/generalAdmin.html :: header">
+
+</div>
+
+<!-- Admin Main Content -->
+<div class="container-fluid" >
+    <div class="row" >
+        <!-- Sidebar -->
+        <nav th:replace="fragments/generalAdmin.html :: sidebar">
+
+        </nav>
+
+        <!-- Main Content -->
+        <main
+                role="main"
+                class="col-lg-10 col-md-9 col-8 px-4 admin-content"
+        >
+            <!-- Page content -->
+            <h2> Services</h2>
+            <form th:action="@{/saveServices}" th:object="${services}" method="post" class="border border-dark">
+                <div class="mb-1 row p-4">
+                    <input type="hidden" class="form-control" name="name_service" th:field="*{id_service}">
+                    <label for="name_service" class="col-form-label">Nom_Service</label>
+                    <input type="text" class="form-control" id="name_service" name="name_service" th:field="*{name_service}">
+                    <label for="description" class="col-form-label">Description</label>
+                    <input type="text" class="form-control" id="description" name="description" th:field="*{description}">
+                    <label for="image" class="col-form-label">Image</label>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/png,image/jpeg" th:field="*{image}">
+                    <label for="time_service" class="col-form-label">Service Duration</label>
+                    <input type="time" class="form-control" id="time_service" name="time_service" th:field="*{time_service}">
+                    <label for="price" class="col-form-label">Price</label>
+                    <input type="number" step="0.01" class="form-control" id="price" name="price" th:field="*{price}">
+                    <label for="id_category" class="col-form-label">Category Name</label>
+                    <select th:field="*{category}"  class="form-control" id="id_category" >
+                        <option value="" selected>choisir</option>
+                        <option th:each="idCat: ${categories}"  th:text="${idCat.name_category}" th:value="${idCat.id_category}" >
+
+                    </select>
+
+
+                </div>
+                <div class="mb-1 row px-4 justify-content-center editCatStyle">
+
+                    <div class="col-6 text-center">
+                        <button type="submit" class="btn btn-primary m-4 px-4">AJOUTER</button>
+                        <button type="button" class="btn btn-secondary m-4 px-4" onclick="history.back()">ANNULER</button>
+                    </div>
+                </div>
+
+            </form>
+
+        </main>
+
+    </div>
+</div>
+
+
+<!-- Bootstrap JS and Popper.js -->
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
 </body>
+
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="modal fade" id="editCategoryModal"  aria-hidden="true">
+   <form th:action="@{/editCategory" th:object="${Category}" method="post">
+       <div class="modal-dialog" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title" id="editCategoryLabel">New Category</h5>
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+               <div class="modal-body">
+                   <div class="form-group">
+                       <label for="editId_category" class="col-form-label">Id_Category</label>
+                       <input type="text" class="form-control" id="editId_category" name="Id_category">
+                   </div>
+
+                   <div class="form-group">
+                       <label for="editName_category" class="col-form-label">Nom_Category</label>
+                       <input type="text" class="form-control" id="editName_category" name="name_category">
+                   </div>
+
+
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                   <button type="submit" class="btn btn-primary">EDIT</button>
+               </div>
+           </div>
+       </div>
+   </form>
+</div>
+-->
+
+
+<!-- Delete Category Modal -->
+<div
+        class="modal fade"
+        id="deleteCategoryModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="deleteCategoryModalLabel"
+        aria-hidden="true"
+>
+    <!-- Add your delete category modal content here -->
+</div>
+</main>
+
+</div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</body>
+
+</html>
+
+
+

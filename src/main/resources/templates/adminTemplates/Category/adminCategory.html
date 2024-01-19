@@ -20,22 +20,20 @@
         <!-- Main Content -->
         <main
                 role="main"
-                class="col-md-9 ml-sm-auto col-lg-10 px-4 admin-content"
+                class="col-lg-10 col-md-9 col-8 px-4 admin-content"
+
         >
-            <!-- Page content goes here -->
+            <!-- Page content  -->
             <h2>Categories</h2>
 
             <!-- Button trigger modal for adding a new category -->
 
-            <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
-
-                <i class="fas fa-plus"></i> Add Category
-            </button>
-
-
+            <button type="button" class="btn btn-primary mb-3" data-toggle="modal"
+                    data-target="#addCategoryModal"><i class="fas fa-plus"></i>Add Category</button>
 
 
             <!-- Category List Table -->
+            <div class="outer-wrapper">
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
@@ -46,103 +44,107 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <!-- Sample category row (replace with dynamic data from your backend) -->
+
                     <tr th:each="category:${categories}">
                         <td th:text="${category.id_category}"></td>
                         <td th:text="${category.name_category}"></td>
                         <td>
                             <a
-                                    href="#"
+
+                                    th:href="@{'/adminDashboard/Category/editCategory/'+${category.id_category}}"
+
+
                                     class="btn btn-sm btn-warning"
-                                    data-toggle="modal"
-                                    data-target="#editCategoryModal"
+
                             >
                                 <i class="fas fa-edit"></i> Edit
                             </a>
                             <a
-                                    href="#"
+                               th:href="@{'/deleteCategory/'+${category.id_category}}"
                                     class="btn btn-sm btn-danger"
-                                    data-toggle="modal"
-                                    data-target="#deleteCategoryModal"
+                                    id="deleteBtn"
                             >
                                 <i class="fas fa-trash"></i> Delete
                             </a>
                         </td>
                     </tr>
-                    <!-- Add more category rows as needed -->
+
                     </tbody>
                 </table>
             </div>
-
+            </div>
             <!-- Modals for CRUD operations -->
             <!-- Add Category Modal -->
-            <div class="modal fade" id="addCategoryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+
+
+
+
+            <div class="modal fade" id="addCategoryModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="addCategoryLabel" aria-hidden="true">
+                <form th:action="@{/saveCategory}" th:object="${Category}" method="post">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="addCategorydropLabel">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h5 class="modal-title" id="addCategoryLabel">New Category</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-
                         <div class="modal-body">
-                            <form th:action="@{/saveCategory}" th:object="${Category}" method="post">
 
-                                    <div class="mb-3">
-                                        <input type="hidden" th:field="*{id_category}" class="form-control"/>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="name_category" class="col-form-label">Nom_Category</label>
+                                    <input type="text" class="form-control" id="name_category" name="name_category">
+                                </div>
 
-                                    <div class="mb-3">
-                                            <label for="name_Category" class="col-sm-2 col-form-label">Nom_Category</label>
-                                            <input type="text" class="form-control"  th:field="*{nom_type}" id="name_Category" placeholder="Nom de Category">
-                                    </div>
 
-                            </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
-                            <button type="button" class="btn btn-primary">SAVE</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">SAVE</button>
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
-
-
-
-
-
-
-            <!-- Edit Category Modal -->
-            <div
-                    class="modal fade"
-                    id="editCategoryModal"
-                    tabindex="-1"
-                    role="dialog"
-                    aria-labelledby="editCategoryModalLabel"
-                    aria-hidden="true"
-            >
-                <!-- Add your edit category modal content here -->
-            </div>
-
             <!-- Delete Category Modal -->
-            <div
-                    class="modal fade"
-                    id="deleteCategoryModal"
-                    tabindex="-1"
-                    role="dialog"
-                    aria-labelledby="deleteCategoryModalLabel"
-                    aria-hidden="true"
-            >
-                <!-- Add your delete category modal content here -->
-            </div>
+                <div class="modal" tabindex="-1" role="dialog" id="deleteCategoryModal">
+
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Supprimer Category</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                               <p>Êtes-vous sûr de supprimer les données</p>
+
+                            </div>
+                            <div class="modal-footer">
+                                <a id="confirmDeleteButton"  href="" class="btn btn-primary">OUI,SUPPRIMER</a>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ANNULER</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
         </main>
 
     </div>
 </div>
 
 <!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
 </body>
+
 </html>
+
+
+

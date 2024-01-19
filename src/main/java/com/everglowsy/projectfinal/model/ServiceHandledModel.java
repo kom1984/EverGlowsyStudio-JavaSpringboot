@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Time;
+
 @Data
 @Entity
 @Table(name="Service")
@@ -29,9 +31,9 @@ public class ServiceHandledModel {
     @Column(name="IMAGE")
     private String image;
     @Column(name="TIME_SERVICE")
-    private String time_service;
+    private Time time_service;
     @Column(name="PRICE")
-    private String price;
+    private Double price;
 
     @ManyToOne
     @JoinColumn(name = "id_category", referencedColumnName="id_category",insertable = true, updatable = true )
