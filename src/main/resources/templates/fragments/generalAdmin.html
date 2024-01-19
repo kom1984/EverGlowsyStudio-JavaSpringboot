@@ -23,12 +23,21 @@
             href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
     />
     <link rel="stylesheet" th:href="@{/css/adminStyle.css}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Merienda:wght@500&family=Roboto+Flex:opsz@8..144&display=swap"
+            rel="stylesheet"
+    />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+   <script type="text/javascript" th:src="@{/js/main.js}"></script>
 </head>
 <body>
     <header class="admin-header" th:fragment = "header">
         <div class="container d-flex">
             <div><a class="navbar-brand" href="#"
             ><img class="d-inline-block align-top"
+                  src="/static/images/E-bigblue.png"
                   th:src="@{/images/E-bigblue.png}"
                   width="50"
                   height="50"
@@ -42,10 +51,12 @@
         </div>
     </header>
 
+<!--d-md-block -->
 
+<nav class="col-lg-2 col-md-3 col-4 admin-sidebar" th:fragment = "sidebar">
 
-<nav class="col-md-2 d-none d-md-block admin-sidebar" th:fragment = "sidebar">
-    <div class="sidebar-sticky">
+    <div class="sidebar-sticky" >
+
         <ul class="nav flex-column">
             <li class="nav-item">
                 <a class="nav-link " href="/adminDashboard">
@@ -69,8 +80,22 @@
             </li>
             <!-- Add more menu items as needed -->
         </ul>
-    </div>
+        </div>
+
+
+
 </nav>
+<!--<div th:fragment = "sidebarShrink">
+    <div class="bg-light flex-fill">
+        <div class="p-2 d-md-none d-flex text-white" id="sidebarToggle">
+            <a href="#" class="text-white" data-bs-toggle="sidebarCollapse" data-bs-target="#bdSidebar">
+                <i class="fas fa-bars"></i>
+
+            </a>
+            <span class="ms-3" >Dashboard</span>
+        </div>
+    </div>
+</div>-->
 
 </body>
 </html>

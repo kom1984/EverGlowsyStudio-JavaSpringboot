@@ -1,19 +1,21 @@
+* {
+	font-family: 'Roboto Flex', sans-serif;
+
+	font-weight: 300;
+    }
 body {
           background-color: #f8f9fa;
-        }
+      }
 
-        .admin-header {
+.admin-header {
 
-        background-color:#ff8fab;;
-          /*background-color: #007bff;
-          color: #fff;*/
+          background-color:#ff8fab;
           color:#213F99;
           padding: 15px;
         }
 
         .admin-sidebar {
         background: #213F99;
-          /*background-color: #343a40;*/
           color: #fff;
           height: 100vh;
         }
@@ -28,8 +30,97 @@ body {
 
         .admin-sidebar a:hover {
           background-color: #6c757d;
+          color: #fff;
         }
 
 
+.table-responsive{
+max-height:65vh;
+over-flow-y:scroll;
+margin:20px;
+}
+.table th{
+position:sticky;
+top:0px;
+background-color:#ff8fab;
+color:#213F99;
+}
+.outer-wrapper{
+border:1px solid black;
+box-shadow:0px 0px 3px black;
+max-width:fit-content;
+margin:20px;
+border-radius:5px;}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+.table-responsive{
+scrollbar-width: auto;
+margin:2px;
 
+}
+.admin-sidebar {
+/*width:30%;*/
+margin:0px;
+padding:1px;
+font-size:24px;
+        }
+        .outer-wrapper{
+        margin:2px;
+                }
+         .admin-content
+          {
+          padding-left: 2px !important;
+            padding-right: 2px !important;
+          }
+
+}
+@media only screen and (max-width: 767px)
+{
+.table-responsive{
+scrollbar-width: auto;
+margin:2px;
+
+}
+.admin-sidebar {
+/*width:35%;*/
+margin:0px;
+padding:1px;
+font-size:12px;
+        }
+.outer-wrapper{
+margin:2px;
+        }
+         .admin-content
+          {
+         padding-left: 2px !important;
+           padding-right: 2px !important;
+          }
+
+}
+
+@media only screen and (max-width: 320px)
+{
+.table-responsive{
+scrollbar-width: auto;
+margin:2px;
+}
+.admin-sidebar
+ {
+/*width:35%;*/
+margin:0px;
+padding:1px;
+font-size:12px;
+        }
+.outer-wrapper
+{
+ margin:2px;
+  }
+ .admin-content
+  {
+  padding-left: 2px !important;
+    padding-right: 2px !important;}
+
+.editCatStyle{
+padding:1px !important;
+}
+}
 

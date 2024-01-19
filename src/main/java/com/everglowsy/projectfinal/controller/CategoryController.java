@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -51,42 +52,29 @@ public class CategoryController {
         model.addAttribute("categories",categoryService.getAllCategory());
         return "adminTemplates/Category/adminCategory";
     }
-
-    @GetMapping("/adminDashboard/Category/add")
-    public String addCategory(Model model)
-    {
-
-        model.addAttribute("Category",new CategoryModel());
-        return "adminTemplates/Category/addCategory";
-    }
-
-
-
-
     @PostMapping("/saveCategory")
     public String saveCategory(@Valid @ModelAttribute("Category") CategoryModel categoryModel, BindingResult bindingResult) {
         if(bindingResult.hasErrors())
         {
-            return "adminTemplates/Category/addCategory";
+            return "adminTemplates/Category/adminCategory";
         }
        categoryService.saveCategory(categoryModel);
-        return "redirect:/adminDashboard/Category";
+        return "redirect:adminDashboard/Category";
 
     }
     @GetMapping("/adminDashboard/Category/editCategory/{id}")
-    public String editCategory(@PathVariable Long id, Model model)
-    {  //(get)trouver les detail de Category au service pour particular id
+    public String editCategory(@PathVariable Long id,Model model)
+    {  //(get)trouvé les detail de category au service pour particular id
         CategoryModel categoryModel = categoryService.getCategoryById(id);
-        // (set) placer Category categoryModel comme model attribute à pre-populate la form
-        model.addAttribute("Category",categoryModel);
-        return "adminTemplates/Category/addCategory";
+        // (set) placer CategoryModel categoryModel comme model attribute à pre-populate la form
+        model.addAttribute("categories",categoryModel);
+        return "adminTemplates/Category/editCategory";
     }
-    @GetMapping("/adminDashboard/Category/deleteCategory/{id}")
-    public String deleteCategory(@PathVariable Long id)
-    {
+
+   @GetMapping("/deleteCategory/{id}")
+    public String deleteCategory(@PathVariable Long id){
         categoryService.deleteCategory(id);
         return "redirect:/adminDashboard/Category";
     }
-
 
 }
