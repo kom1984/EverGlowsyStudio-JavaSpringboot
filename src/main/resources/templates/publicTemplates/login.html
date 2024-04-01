@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head
+        th:replace="~{fragments/general.html :: head}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" >
+    <div class="container">
+        <a class="navbar-brand" href="#"
+        ><img class="d-inline-block align-top"
+              th:src="@{images/E-bigblue.png}"
+              width="60"
+              height="60"
+
+              alt="logo"
+        />
+            Everglowsy studio</a
+        >
+    </div>
+</nav>
+        <div class="logincontainer">
+            <form class="form-signin" method="POST" th:action="@{/admin}">
+                <h2 class="form-heading">LOGIN</h2>
+                <div class="form-group">
+                    <span class="has-error" th:text="${message}"></span>
+                    <input name="email" type="email" class="form-control" placeholder="Saisissez votre email" autofocus="true" required />
+
+                    <input name="password" type="password" class="form-control" placeholder="Saisissez votre mot de passe" required/>
+                    <span class="has-error" th:text="${error}"></span>
+
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
+                    <button class="btn btn-lg btn-block"  type="submit" style="background-color:dodgerblue;width:300px;color:#fff">Log In</button>
+                    <h4 class="text-center"><a href="/signup"><strong>Créer Un Compte</strong></a></h4>
+                </div>
+            </form>
+        </div>
+
+<!-- footer starts -->
+<footer
+        th:replace="~{fragments/general.html :: footer}">
+</footer>
+<!-- footer ends -->
+<script th:src="@{js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

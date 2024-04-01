@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head
-    th:replace="fragments/generalAdmin.html :: head">
+    th:replace="~{fragments/generalAdmin.html :: head}">
 </head>
 <body>
 <!-- Admin Header -->
-<div th:replace="fragments/generalAdmin.html :: header">
+<div th:replace="~{fragments/generalAdmin.html :: header}">
 
 </div>
 
@@ -15,24 +15,30 @@
 
         <!-- Sidebar -->
 
-        <nav th:replace="fragments/generalAdmin.html :: sidebar">
+        <nav th:replace="~{fragments/generalAdmin.html :: sidebar}">
 
         </nav>
 
 
 
 
-        <!-- Main Content col-md-9 ml-sm-auto col-lg-10-->
+        <!-- Main Content -->
 
         <main
                 role="main"
                 class="col-lg-10 col-md-9 col-8 px-4 admin-content"
         >
 
-            <!-- Page content goes here -->
-            <h2>Dashboard</h2>
-            <p>Welcome to the EverGlowsy-Studio Admin Dashboard.</p>
 
+            <h2>Bienvenue à EverGlowsyStudio Admin Tableau de Bord</h2>
+            <!--<div sec:authorize="hasAuthority('ADMIN')">Text visible to admin.</div>
+            <div sec:authorize="isAuthenticated()">
+                Text visible only to authenticated users.
+            </div>-->
+            Authenticated user email:
+            <div sec:authentication="name"></div>
+            Authenticated user roles:
+            <div sec:authentication="principal.authorities"></div>
         </main>
 
     </div>

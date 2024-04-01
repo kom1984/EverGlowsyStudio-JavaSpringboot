@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head
-    th:replace="fragments/general.html :: head">
+    th:replace="~{fragments/general.html :: head}">
 
 </head>
-<body>
+<body onload="hideTranslateElements()">
 <nav
-    th:replace="fragments/general.html :: navbar">
-
+    th:replace="~{fragments/general.html :: navbar}">
 </nav>
-
 <div class="banner">
-
     <div class="container">
         <h1>EverGlowsy-Studio</h1>
         <p>Prenez du temps pour vous. Nous garantissons la mise en valeur de votre beauté..</p>
         <a href="#appointments" class="btn" id="btnId">Prenez RDV</a>
-
-
     </div>
 </div>
-
 <!-- about section starts -->
 <section id="about" class="about section-padding">
     <div class="container">
@@ -33,8 +27,6 @@
                     <img  class="img-fluid  mt-md-5" id="about-text-img2"
                           th:src="@{images/studio2.jpg}"
                           alt="studio"/>
-
-
                 </div>
             </div>
             <div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5">
@@ -104,7 +96,7 @@
     </div>
 </section>
 <!-- about section Ends -->
-<!-- services section Starts th:if="(${category.id_category} == ${serviceCategory.id_category})" th:each="serviceCategory:${all-service-category}"-->
+<!-- services section Starts -->
 <section class="services section-padding" id="services">
     <div class="container">
          <h1 class="text-center mb-4">Prestations</h1>
@@ -201,15 +193,14 @@
 
  </section>
 <!-- services section Ends -->
-
 <!-- galerie starts -->
 <section id="galerie" class="portfolio section-padding">
     <div class="container gallery-section pb-5">
-        <h2 class="text-center">Our Gallery</h2>
+        <h2 class="text-center">Galerie</h2>
         <div class="row" >
             <div th:each="service:${services}" class="col-md-4 mb-4">
                 <img
-                        th:src="${service.image}"
+                        th:src="${'/images/'+service.image}"
                         class="img-fluid"
                         alt="Beauty Salon Photo 1"
                 />
@@ -218,7 +209,7 @@
     </div>
 </section>
 <!-- portfolio ends -->
-<!-- team starts -->
+<!-- team starts  /*style="background-color:#40698C;color:#fff"*/-->
 <section class="team section-padding" id="appointments">
     <div class="container">
         <div class="row">
@@ -246,7 +237,9 @@
 
                                 </div>
 
-                                <div><a href="#" class="btn btn-secondary" >Choisir</a></div>
+                                <div>
+                                    <a href="appointment1" data-th-href="@{'appointment1/'+${service.id_service}}" class="btn btn-secondary"  >Choisir</a>
+
                         </div>
 
                         </div>
@@ -256,9 +249,10 @@
         </div>
 
     </div>
+    </div>
 </section>
 <!-- team ends -->
-<!-- Contact starts mt-5 mb-5-->
+<!-- Contact starts-->
 <section id="contact" class="contact section-padding">
     <div class="container">
         <div class="row">
@@ -320,10 +314,11 @@
 <!-- contact ends -->
 <!-- footer starts -->
 <footer
-    th:replace="fragments/general.html :: footer">
-
+    th:replace="~{fragments/general.html :: footer}">
 </footer>
 <!-- footer ends -->
+
+
 
 <script th:src="@{js/bootstrap.bundle.min.js}"></script>
 </body>

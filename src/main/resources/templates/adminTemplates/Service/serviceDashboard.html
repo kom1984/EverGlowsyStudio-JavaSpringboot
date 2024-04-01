@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head
-        th:replace="fragments/generalAdmin.html :: head">
+        th:replace="~{fragments/generalAdmin.html :: head}">
 </head>
 <body>
 <!-- Admin Header -->
-<div th:replace="fragments/generalAdmin.html :: header">
+<div th:replace="~{fragments/generalAdmin.html :: header}">
 
 </div>
 
@@ -13,7 +13,7 @@
 <div class="container-fluid" >
     <div class="row" >
         <!-- Sidebar -->
-        <nav th:replace="fragments/generalAdmin.html :: sidebar">
+        <nav th:replace="~{fragments/generalAdmin.html :: sidebar}">
 
         </nav>
 
@@ -45,7 +45,7 @@
                             <th>Service Name</th>
                             <th>Description</th>
                             <th>Image</th>
-                            <th>Service Time</th>
+                            <th>Service Time(hh:mm)</th>
                             <th>Price(€)</th>
                             <th>Category Name</th>
                             <th>Action</th>
@@ -57,7 +57,7 @@
                             <td th:text="${service.id_service}"></td>
                             <td th:text="${service.name_service}"></td>
                             <td th:text="${service.description}"></td>
-                            <td><img src="/static/images" th:src="@{${'/'+ service.image}}" alt="serviceimg" width="100%" height="50%"></td>
+                            <td><img src="/static/images" th:src="@{${'/images/'+ service.image}}" alt="serviceimg" width="100%" height="50%"></td>
                             <td th:text="${service.time_service}"></td>
                             <td th:text="${service.price}"></td>
                             <td th:text="${service.category.name_category}"></td>

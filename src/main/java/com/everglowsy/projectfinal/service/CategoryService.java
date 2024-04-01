@@ -4,9 +4,7 @@ import com.everglowsy.projectfinal.model.CategoryModel;
 import com.everglowsy.projectfinal.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CategoryService {

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head
-        th:replace="fragments/generalAdmin.html :: head">
+        th:replace="~{fragments/generalAdmin.html :: head}">
 </head>
 <body>
 <!-- Admin Header -->
-<div th:replace="fragments/generalAdmin.html :: header">
+<div th:replace="~{fragments/generalAdmin.html :: header}">
 
 </div>
 
@@ -13,7 +13,7 @@
 <div class="container-fluid" >
     <div class="row" >
         <!-- Sidebar -->
-        <nav th:replace="fragments/generalAdmin.html :: sidebar">
+        <nav th:replace="~{fragments/generalAdmin.html :: sidebar}">
 
         </nav>
 

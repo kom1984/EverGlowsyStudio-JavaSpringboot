@@ -15,20 +15,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.Duration;
+
 @Controller
 public class ServiceHandledController {
     @Autowired
     private ServiceHandledService serviceHandledService;
-    @GetMapping("/adminDashboard/Service")
+    @GetMapping("/admin/Service")
     public String adminService( Model model)
     {
 
         model.addAttribute("services",serviceHandledService.getAllServices());
-        return "adminTemplates/Service/adminService";
+        return "adminTemplates/Service/serviceDashboard";
     }
     @Autowired
     private CategoryService categoryService;
-    @GetMapping("/adminDashboard/Service/addService")
+    @GetMapping("/admin/Service/addService")
     public String addService(Model model)
     {
         model.addAttribute("categories",categoryService.getAllCategory());
@@ -47,17 +49,16 @@ public class ServiceHandledController {
 
 
     @PostMapping("/saveServices")
-    public String saveService(@Valid @ModelAttribute("services") ServiceHandledModel serviceHandledModel, BindingResult bindingResult) {
-        if(bindingResult.hasErrors())
-        {
-            return "adminTemplates/Service/addService";
-        }
+    public String saveService(@Valid @ModelAttribute("services") ServiceHandledModel serviceHandledModel) {
+
+       //serviceHandledModel.setTime_service(Duration.ofMinutes(serviceHandledModel.getTime_service().toMinutes()));
         serviceHandledService.saveService(serviceHandledModel);
-        return "redirect:/adminDashboard/Service";
+        return "redirect:/admin/Service";
 
     }
 
-    @GetMapping("/adminDashboard/Service/editService/{id}")
+
+    @GetMapping("/admin/Service/editService/{id}")
     public String editService(@PathVariable Long id, Model model)
     {  //(get)trouver les detail de Service  pour particular id
         ServiceHandledModel serviceHandledModel = serviceHandledService.getServiceById(id);
@@ -66,10 +67,10 @@ public class ServiceHandledController {
         return "adminTemplates/Service/editService";
     }
 
-    @GetMapping("/adminDashboard/Service/deleteService/{id}")
+    @GetMapping("/admin/Service/deleteService/{id}")
     public String deleteService(@PathVariable Long id)
     {
         serviceHandledService.deleteService(id);
-        return "redirect:/adminDashboard/Service";
+        return "redirect:/admin/Service";
     }
 }

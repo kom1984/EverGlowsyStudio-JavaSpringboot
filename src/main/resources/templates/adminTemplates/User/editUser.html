@@ -23,33 +23,47 @@
                 class="col-lg-10 col-md-9 col-8 px-4 admin-content"
         >
             <!-- Page content -->
-            <h2> Services</h2>
-            <form th:action="@{/saveServices}" th:object="${services}" method="post" class="border border-dark">
+            <h2> Edit User</h2>
+            <form th:action="@{/saveUser}" th:object="${users}" method="post" class="border border-dark">
                 <div class="mb-1 row p-4">
-                    <input type="hidden" class="form-control" name="name_service" th:field="*{id_service}">
-                    <label for="name_service" class="col-form-label">Nom_Service</label>
-                    <input type="text" class="form-control" id="name_service" name="name_service" th:field="*{name_service}">
-                    <label for="description" class="col-form-label">Description</label>
-                    <input type="text" class="form-control" id="description" name="description" th:field="*{description}">
-                    <label for="image" class="col-form-label">Image</label>
-                    <input type="file" class="form-control" id="image" name="image" accept="image/png,image/jpeg" th:field="*{image}">
-                    <label for="time_service" class="col-form-label">Service Duration</label>
-                    <input type="time" class="form-control" id="time_service" name="time_service" th:field="*{time_service}">
-                    <label for="price" class="col-form-label">Price</label>
-                    <input type="number" step="0.01" class="form-control" id="price" name="price" th:field="*{price}">
-                    <label for="id_category" class="col-form-label">Category Name</label>
-                    <select th:field="*{category}"  class="form-control" id="id_category" >
-                        <option value="" selected>choisir</option>
-                        <option th:each="idCat: ${categories}"  th:text="${idCat.name_category}" th:value="${idCat.id_category}" >
+                    <input type="hidden"  class="form-control" th:field="*{id_user}">
+                    <label for="LastName" class="col-sm-2 col-form-label">Nom</label>
+                    <div class="col-sm-10">
 
-                    </select>
+                        <input type="text"  class="form-control" id="LastName" th:field="*{lastName}">
+                    </div>
+                    <label for="FirstName" class="col-sm-2 col-form-label">Prenom</label>
+                    <div class="col-sm-10">
 
+                        <input type="text"  class="form-control" id="FirstName" th:field="*{firstName}">
+                    </div>
+
+                    <label for="email" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+
+                        <input type="email"  class="form-control" id="email" th:field="*{email}">
+                    </div>
+
+
+                    <label for="telephone" class="col-sm-2 col-form-label">Portable Numero</label>
+                    <div class="col-sm-10">
+
+                        <input type="tel"  class="form-control" id="telephone" th:field="*{telephone}">
+                    </div>
+
+
+                    <label for="role" class="col-sm-2 col-form-label">Role</label>
+                    <div class="col-sm-10">
+
+                        <input type="text"  class="form-control" id="role" th:field="*{role}">
+                    </div>
+                    <input type="hidden"  class="form-control" th:field="*{password}">
 
                 </div>
                 <div class="mb-1 row px-4 justify-content-center editCatStyle">
 
                     <div class="col-6 text-center">
-                        <button type="submit" class="btn btn-primary m-4 px-4">AJOUTER</button>
+                        <button type="submit" class="btn btn-primary m-4 px-4">MODIFIER</button>
                         <button type="button" class="btn btn-secondary m-4 px-4" onclick="history.back()">ANNULER</button>
                     </div>
                 </div>

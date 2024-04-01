@@ -1,5 +1,4 @@
 package com.everglowsy.projectfinal.controller;
-
 import com.everglowsy.projectfinal.model.CategoryModel;
 import com.everglowsy.projectfinal.model.ServiceHandledModel;
 import com.everglowsy.projectfinal.service.CategoryService;
@@ -10,11 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
-
-
 @Controller
 public class CategoryController {
     @Autowired
@@ -22,7 +17,6 @@ public class CategoryController {
     @Autowired
     private ServiceHandledService serviceHandledService;
     @GetMapping("/")
-
     public String index(Model model)
     {
         List<CategoryModel> list= categoryService.getAllCategory();
@@ -30,39 +24,38 @@ public class CategoryController {
         int halfsize = list.size()/2;
         List<CategoryModel> column1 = list.subList(0,halfsize);
         List<CategoryModel> column2 = list.subList(halfsize,list.size());
-
         model.addAttribute("categories",list);
         model.addAttribute("halfCategories1",column1);
         model.addAttribute("halfCategories2",column2);
         model.addAttribute("services",list1);
-        //model.addAttribute("all-service-category",serviceHandledService. getServiceCategory());
         return "publicTemplates/index";
     }
 
-    @GetMapping("/adminDashboard")
+    @GetMapping("/admin/all")
     public String adminCategory()
     {
         return "adminTemplates/adminDashboard";
     }
 
-    @GetMapping("/adminDashboard/Category")
+
+    @GetMapping("/admin/Category")
     public String adminCategory( Model model)
     {
 
         model.addAttribute("categories",categoryService.getAllCategory());
-        return "adminTemplates/Category/adminCategory";
+        return "adminTemplates/Category/categoryDashboard";
     }
     @PostMapping("/saveCategory")
     public String saveCategory(@Valid @ModelAttribute("Category") CategoryModel categoryModel, BindingResult bindingResult) {
         if(bindingResult.hasErrors())
         {
-            return "adminTemplates/Category/adminCategory";
+            return "adminTemplates/Category/editCategory";
         }
        categoryService.saveCategory(categoryModel);
-        return "redirect:adminDashboard/Category";
+        return "redirect:admin/Category";
 
     }
-    @GetMapping("/adminDashboard/Category/editCategory/{id}")
+    @GetMapping("/admin/Category/editCategory/{id}")
     public String editCategory(@PathVariable Long id,Model model)
     {  //(get)trouvé les detail de category au service pour particular id
         CategoryModel categoryModel = categoryService.getCategoryById(id);
@@ -74,7 +67,7 @@ public class CategoryController {
    @GetMapping("/deleteCategory/{id}")
     public String deleteCategory(@PathVariable Long id){
         categoryService.deleteCategory(id);
-        return "redirect:/adminDashboard/Category";
+        return "redirect:/admin/Category";
     }
 
 }

@@ -2,9 +2,13 @@
 	font-family: 'Roboto Flex', sans-serif;
 	color:#213F99;
 	font-weight: 300;
+
     }
 body {
 	background:#fff;
+    min-height:100vh;
+
+
     }
 .section-padding
     {
@@ -17,7 +21,7 @@ body {
       position: relative;
       text-align: center;
       /*color: #fff;*/
-      background: url('../images/woman2.jpg');
+      background: url('../images/women2.jpg');
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center center;
@@ -206,11 +210,14 @@ border-color:#213F99;
 }
 #footerId{
 background-color:#ff8fab;
+position:sticky;
+top:100%;
+
 }
 #footerPara{
 color:#213F99! important;
 }
- /*-----------------------------------------Media Query(within 768 AND 991px)---------------------------------------------------*/
+ /*-------------------Media Query(within 768 AND 991px)-----------*/
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 .banner h1
     {
@@ -255,9 +262,16 @@ color:#213F99! important;
                 margin-top:30px;
                 margin-bottom:10px;
                 }
+                .logincontainer .row{
+                margin-top:70px !important;
+                margin-left:10px !important;
+                }
+                .logincontainer .form-heading{
+                 margin-top:70px !important;
+                }
 
 }
- /*-----------------------------------------Media Query(within 767px)---------------------------------------------------*/
+ /*-----------------Media Query(within 767px)-------------------*/
 @media only screen and (max-width: 767px)
 {
 .navbar-light .navbar-brand
@@ -315,6 +329,14 @@ color:#213F99! important;
                     .contactSec2{
                     display:inline-block!important;
                     }
+
+                    .logincontainer .row{
+                    margin-top:70px !important;
+                    margin-left:10px !important;
+                    }
+                    .logincontainer .form-heading{
+                                     margin-top:70px !important;
+                                    }
             	}
  /*-----------------------------------------Media Query(within 320px)---------------------------------------------------*/
 @media only screen and (max-width: 320px)
@@ -370,4 +392,111 @@ margin-bottom:10px;
 display:inline-block!important;
 
 }
+.logincontainer .row{
+margin-top:70px !important;
+margin-left:10px !important;
 }
+.logincontainer .form-heading{
+                 margin-top:70px !important;
+                }
+}
+/************************************************
+        Appointment page
+*************************************************/
+.ui-datepicker-week-end .ui-state-disabled {
+        display: none;
+      }
+
+/***********************************************
+           Login page/form
+***********************************************/
+
+.logincontainer {
+        max-width: 100%;
+            padding: 10% 0% 10% 0%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+}
+
+.flex_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+    font-weight: normal;
+}
+
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+
+.form-signin input {
+    margin-top: 10px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin button {
+    margin-top: 10px;
+
+}
+.back-link{
+        background: none;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        color: #ff8fab; /* Change the color to suit your design */
+        text-decoration: underline;
+}
+
+
+.back-link:hover {
+        color: #213F99; /* Change the color to suit your design */
+    }
+    .form-group a {
+        text-decoration: none;
+         color: #ff8fab;
+                    }
+    .form-group a:hover {
+           color:#213F99;
+            }
+.has-error {
+    color: red;
+}
+.has-success {
+    color: rgb(9, 255, 0);
+
+
+/*******************************
+            Fin de login page/form
+***************************/
+}
+
+

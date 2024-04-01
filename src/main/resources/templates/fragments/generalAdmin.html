@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment = "head">
     <meta charset="UTF-8" />
     <meta
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>EverGlowsy-Studio Admin Dashboard</title>
+    <title>EverGlowsy-Studio Admin Tableau de Bord</title>
     <!-- Bootstrap CSS
     <link
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -45,8 +45,11 @@
             </a></div>
             <div>
 
-                <h1>EverGlowsy-Studio Admin Dashboard</h1>
-
+                <h1>EverGlowsy-Studio Admin Tableau de Bord</h1>
+               <!-- Authenticated user email:
+                <div sec:authentication="name"></div>
+                Authenticated user roles:
+                <div sec:authentication="principal.authorities"></div>-->
             </div>
         </div>
     </header>
@@ -59,26 +62,39 @@
 
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link " href="/adminDashboard">
-                    <i class="fas fa-home"></i> Dashboard
+                <a class="nav-link " href="/admin/all">
+                    <i class="fas fa-home"></i> Tableau de Bord
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/adminDashboard/Category">
+                <a class="nav-link" href="/admin/Category">
                     <i class="fas fa-th-list"></i> Category
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/adminDashboard/Service">
+                <a class="nav-link" href="/admin/Service">
                     <i class="fas fa-cut"></i> Service
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="appointments.html">
+                <a class="nav-link" href="/admin/Appointments">
                     <i class="fas fa-calendar"></i> Appointments
                 </a>
             </li>
-            <!-- Add more menu items as needed -->
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/User">
+                    <i class='fas fa-users'></i>
+                    Users
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </li>
+
+
         </ul>
         </div>
 
