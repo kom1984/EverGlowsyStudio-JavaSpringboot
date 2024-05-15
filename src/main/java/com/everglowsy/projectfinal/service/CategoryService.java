@@ -24,6 +24,7 @@ public class CategoryService {
     public void saveCategory(CategoryModel savecategory)
     {
         categoryRepository.save(savecategory);
+
     }
     public void deleteCategory(Long id)
     {

@@ -18,14 +18,15 @@
         >
     </div>
 </nav>
-        <div class="logincontainer">
-            <form class="form-signin" method="POST" th:action="@{/admin}">
-                <h2 class="form-heading">LOGIN</h2>
+      <!--  <div class="logincontainer">
+            <form class="form-signin" method="POST" th:action="@{/login}">
+                <h2 class="form-heading">LOGIN </h2>
                 <div class="form-group">
-                    <span class="has-error" th:text="${message}"></span>
-                    <input name="email" type="email" class="form-control" placeholder="Saisissez votre email" autofocus="true" required />
+                    <span th:text="${message}"></span>
+                    <input name="email" type="email" class="form-control" placeholder="Saisissez votre email" autofocus="true"  />
 
-                    <input name="password" type="password" class="form-control" placeholder="Saisissez votre mot de passe" required/>
+                    <input name="password" type="password" class="form-control" placeholder="Saisissez votre mot de passe" />
+                    <i class="toggle-password fas fa-eye" onclick="togglePasswordVisibility()"></i>
                     <span class="has-error" th:text="${error}"></span>
 
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -34,13 +35,36 @@
                     <h4 class="text-center"><a href="/signup"><strong>Créer Un Compte</strong></a></h4>
                 </div>
             </form>
-        </div>
+        </div>-->
 
+<div class="logincontainer">
+    <form class="form-signin" method="POST" th:action="@{/login}">
+        <h2 class="form-heading">LOGIN </h2>
+        <div class="form-group">
+            <span th:text="${message}"></span>
+            <input name="email" type="email" class="form-control" placeholder="Saisissez votre email" autofocus="true" />
+
+            <div class="password-wrapper">
+                <input id="password" name="password" type="password" class="form-control" placeholder="Saisissez votre mot de passe" />
+                <i class="toggle-password fas fa-eye" onclick="togglePasswordVisibility()"></i>
+            </div>
+            <span class="has-error" th:text="${error}"></span>
+
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
+            <button class="btn btn-lg btn-block" type="submit" style="background-color:dodgerblue;width:300px;color:#fff">Log In</button>
+            <h4 class="text-center"><a href="/signup"><strong>Créer Un Compte</strong></a></h4>
+        </div>
+    </form>
+</div>
 <!-- footer starts -->
 <footer
         th:replace="~{fragments/general.html :: footer}">
 </footer>
 <!-- footer ends -->
+
+<script th:src="@{js/main.js}"> </script>
 <script th:src="@{js/bootstrap.bundle.min.js}"></script>
+
 </body>
 </html>

@@ -25,6 +25,9 @@
     <link rel="stylesheet" th:href="@{/css/adminStyle.css}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
     <link
             href="https://fonts.googleapis.com/css2?family=Merienda:wght@500&family=Roboto+Flex:opsz@8..144&display=swap"
             rel="stylesheet"
@@ -62,33 +65,33 @@
 
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link " href="/admin/all">
+                <a class="nav-link " href="/admin/all" sec:authorize="isAuthenticated()">
                     <i class="fas fa-home"></i> Tableau de Bord
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/Category">
+                <a class="nav-link" href="/admin/Category" sec:authorize="isAuthenticated()">
                     <i class="fas fa-th-list"></i> Category
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/Service">
+                <a class="nav-link" href="/admin/Service" sec:authorize="isAuthenticated()">
                     <i class="fas fa-cut"></i> Service
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/Appointments">
+                <a class="nav-link" href="/admin/Appointments" sec:authorize="isAuthenticated()">
                     <i class="fas fa-calendar"></i> Appointments
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/User">
+                <a class="nav-link" href="/admin/User" sec:authorize="isAuthenticated()">
                     <i class='fas fa-users'></i>
                     Users
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin">
+                <a class="nav-link" href="/" sec:authorize="isAuthenticated()">
                     <i class="fas fa-sign-out-alt"></i>
                     Logout
                 </a>

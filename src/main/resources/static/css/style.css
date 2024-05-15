@@ -96,12 +96,13 @@ body {
 	color: #fff;
 	
 }
-.navbar-light .navbar-nav .nav-link {
+.navbar-light .navbar-nav .nav-link{
      color:#213F99;
      letter-spacing: 1px;
     font-weight: 500;
 	
 }
+
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
 	/*border: 3px gray solid;
 	background-color:#F2D4D6 ;	
@@ -111,6 +112,7 @@ body {
 		color: #F2D4D6;*/
 		color:#fff;
 }
+
 .nav-item a:hover:after{
 	width:100%;
 	
@@ -410,7 +412,6 @@ margin-left:10px !important;
 /***********************************************
            Login page/form
 ***********************************************/
-
 .logincontainer {
         max-width: 100%;
             padding: 10% 0% 10% 0%;
@@ -425,13 +426,39 @@ margin-left:10px !important;
     align-items: center;
     flex-wrap: wrap;
 }
+.form-group a{
+       text-decoration: none;
+       color: #ff8fab;
+         }
+.form-group a:hover {
+        color:#213F99;
+          }
+.password-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .password-wrapper input[type="password"],
+        .password-wrapper input[type="text"] {
+            width: 100%;
+            padding-right: 30px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            z-index: 2;
+        }
 
 .form-signin {
     max-width: 330px;
     padding: 15px;
     margin: 0 auto;
 }
-
 
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
@@ -464,38 +491,98 @@ margin-left:10px !important;
 
 .form-signin button {
     margin-top: 10px;
-
 }
+
+.has-error {
+    color: red;
+}
+
+.has-success {
+    color: rgb(9, 255, 0);
+
+
 .back-link{
         background: none;
         border: none;
         padding: 0;
         font: inherit;
         cursor: pointer;
-        color: #ff8fab; /* Change the color to suit your design */
+        color: #ff8fab;
         text-decoration: underline;
 }
 
 
 .back-link:hover {
-        color: #213F99; /* Change the color to suit your design */
+        color: #213F99;
     }
-    .form-group a {
-        text-decoration: none;
-         color: #ff8fab;
-                    }
-    .form-group a:hover {
-           color:#213F99;
-            }
-.has-error {
-    color: red;
-}
-.has-success {
-    color: rgb(9, 255, 0);
+
+
 
 
 /*******************************
             Fin de login page/form
+            .logincontainer {
+                    max-width: 100%;
+                        padding: 10% 0% 10% 0%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+            }
+
+            .flex_container {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-wrap: wrap;
+            }
+
+            .form-signin {
+                max-width: 330px;
+                padding: 15px;
+                margin: 0 auto;
+            }
+
+
+            .form-signin .form-signin-heading,
+            .form-signin .checkbox {
+                margin-bottom: 10px;
+            }
+
+            .form-signin .checkbox {
+                font-weight: normal;
+            }
+
+            .form-signin .form-control {
+                position: relative;
+                height: auto;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                padding: 10px;
+                font-size: 16px;
+            }
+
+            .has-error {
+                color: red;
+            }
+
+            .has-success {
+                color: rgb(9, 255, 0);
+
+            .form-signin .form-control:focus {
+                z-index: 2;
+            }
+
+            .form-signin input {
+                margin-top: 10px;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+
+            .form-signin button {
+                margin-top: 10px;
+
+            }
 ***************************/
 }
 

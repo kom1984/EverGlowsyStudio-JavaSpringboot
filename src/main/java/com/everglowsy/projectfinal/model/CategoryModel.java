@@ -1,6 +1,9 @@
 package com.everglowsy.projectfinal.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,19 +19,14 @@ import java.util.List;
 public class CategoryModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="ID_Category")
+    @Column(name = "ID_Category")
     private Long id_category;
-
-    // Le Nom de category ne doit pas être nul ou vide
-    // le nom de category doit comporter au moins 2 caractères
-    //@NotEmpty
-    //@Size(min = 2,
-           // message = "le nom de category doit comporter au moins 2 caractères")
-    @Column(name="NAME_CATEGORY")
+    @Column(name = "NAME_CATEGORY")
     private String name_category;
+}
 
+    
     /*@OneToMany(cascade = CascadeType.ALL,mappedBy = "category")
     private List<ServiceHandledModel> serviceHandledModel;*/
 
 
-}

@@ -49,9 +49,15 @@ public class ServiceHandledController {
 
 
     @PostMapping("/saveServices")
-    public String saveService(@Valid @ModelAttribute("services") ServiceHandledModel serviceHandledModel) {
+    public String saveService(@Valid @ModelAttribute("services") ServiceHandledModel serviceHandledModel, BindingResult bindingResult, Model model) {
 
-       //serviceHandledModel.setTime_service(Duration.ofMinutes(serviceHandledModel.getTime_service().toMinutes()));
+        if (bindingResult.hasErrors()) {
+            // S'il y a des erreurs de validation, retournez au formulaire d'service avec les erreurs
+            model.addAttribute("categories", categoryService.getAllCategory());
+            return "adminTemplates/Service/addService";
+        }
+
+        //S'il n'y a aucune erreur de validation, poursuivez le processus d'service
         serviceHandledService.saveService(serviceHandledModel);
         return "redirect:/admin/Service";
 
@@ -64,7 +70,8 @@ public class ServiceHandledController {
         ServiceHandledModel serviceHandledModel = serviceHandledService.getServiceById(id);
         // (set) placer Service ServiceHandledModel comme model attribute à pre-populate la form
         model.addAttribute("services",serviceHandledModel);
-        return "adminTemplates/Service/editService";
+        model.addAttribute("categories",categoryService.getAllCategory());
+        return "adminTemplates/Service/addService";
     }
 
     @GetMapping("/admin/Service/deleteService/{id}")

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:fragment = "head" >
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,8 +13,8 @@
     <link rel="stylesheet" th:href="@{/css/style.css}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <link
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   <link
             rel="stylesheet"
             href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
     <!--<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -55,24 +55,55 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form id="logoutForm" method="POST" th:action="@{/logout}"></form>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/#}">Home</a>
+                    <a class="nav-link" th:href="@{/#}" >Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/#about}">About</a>
+                    <a class="nav-link" th:href="@{/#about}" >About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/#services}">Prestations</a>
+                    <a class="nav-link" th:href="@{/#services}" >Prestations</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/#galerie}">Galerie</a>
+                    <a class="nav-link" th:href="@{/#galerie}" >Galerie</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/#appointments}">Rendez-vous</a>
+                    <a class="nav-link" th:href="@{/#appointments}" >Rendez-vous</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/#contact}">Contact</a>
+                    <a class="nav-link" th:href="@{/#contact}" >Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/all"  sec:authorize="hasAuthority('ADMIN')">ADMIN</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn" onclick="document.forms['logoutForm'].submit()" sec:authorize="hasAuthority('ADMIN')" >LOGOUT</a>
+                </li>
+
+               <!-- <div class="dropdown show">
+                    <a class="btn btn-secondary dropdown-toggle" sec:authorize="hasAuthority('USER')" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        CLIENT
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">PROFILE</a>
+                        <a class="dropdown-item" onclick="document.forms['logoutForm'].submit()"  sec:authorize="hasAuthority('USER')" >DÉCONNEXION</a>
+                    </div>
+                </div>-->
+
+               <li class="nav-item">
+                    <a class="nav-link" href="#"  sec:authorize="hasAuthority('USER')">CLIENT</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn"  onclick="document.forms['logoutForm'].submit()"  sec:authorize="hasAuthority('USER')" >LOGOUT</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/all"  sec:authorize="hasAuthority('EMPLOYEE')">EMPLOYEE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn"  onclick="document.forms['logoutForm'].submit()"  sec:authorize="hasAuthority('EMPLOYEE')" >LOGOUT</a>
                 </li>
 
             </ul>

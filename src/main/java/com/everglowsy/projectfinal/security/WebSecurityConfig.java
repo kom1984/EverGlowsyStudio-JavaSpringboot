@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -26,27 +28,27 @@ private UserDetailsService userService;
             return new BCryptPasswordEncoder();
         }
 
-        @Bean
-        SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-            http.authorizeHttpRequests((requests) -> requests
-                            .requestMatchers("/","/signup", "/js/**","/images/**", "/css/**").permitAll()
-                            .requestMatchers(antMatcher("/admin/**")).hasAuthority("ADMIN")
-                            .requestMatchers(antMatcher("/appointment/**")).authenticated()
-                            .anyRequest().authenticated()
-                    )
-                    .formLogin((form) -> form.loginPage("/admin").usernameParameter("email").defaultSuccessUrl("/admin/all").permitAll())
-                   // .formLogin((form) -> form.loginPage("/appointment").permitAll())
-                    .logout((logout) -> logout.permitAll());
+    @Bean
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.authorizeRequests((requests) -> requests
+                        .requestMatchers( "/","/signup", "/js/**", "/images/**", "/css/**").permitAll() // Permit access to these URLs
+                        .requestMatchers("/admin/**").hasAuthority("ADMIN") // Requires ADMIN authority for admin URLs
+                      //  .requestMatchers("/admin/all","/admin/Appointments").hasRole("EMPLOYEE") // Requires EMPLOYEE authority for admin URLs
+                        .requestMatchers("/bookService","/bookService/**").hasAuthority("USER") // Requires authentication for appointment URLs
+                        .anyRequest().authenticated() // Requires authentication for any other request
+                )
+                .formLogin(form -> form.loginPage("/login").usernameParameter("email").defaultSuccessUrl("/",true)
+                        .permitAll())
+                .logout(logout->logout.permitAll());
+                return http.build();
+    }
 
-            return http.build();
 
-
-        }
-
-        @Autowired
+    @Autowired
         void configure(AuthenticationManagerBuilder builder) throws Exception {
             builder.userDetailsService(userService);
         }
+
 }
 
 

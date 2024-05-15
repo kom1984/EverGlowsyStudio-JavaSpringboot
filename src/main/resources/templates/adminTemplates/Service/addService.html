@@ -28,19 +28,28 @@
                 <div class="mb-1 row p-4">
                     <input type="hidden" class="form-control" name="name_service" th:field="*{id_service}">
                     <label for="name_service" class="col-form-label">Nom_Service</label>
-                    <input type="text" class="form-control" id="name_service" name="name_service" th:field="*{name_service}">
+                    <input type="text" class="form-control" id="name_service" name="name_service" th:field="*{name_service}" autofocus="true">
+                    <span class="has-error" th:if="${#fields.hasErrors('name_service')}" th:errors="*{name_service}"></span>
+
+
+
+
+
+
                     <label for="description" class="col-form-label">Description</label>
-                    <input type="text" class="form-control" id="description" name="description" th:field="*{description}">
+                    <input type="text" class="form-control" id="description" name="description" th:field="*{description}" autofocus="true">
                     <label for="image" class="col-form-label">Image</label>
-                    <input type="file" class="form-control" id="image" name="image" accept="image/png,image/jpeg" th:field="*{image}">
+                    <input type="file" class="form-control" id="image" name="image" accept="image/png,image/jpeg" th:field="*{image}" autofocus="true">
                     <label for="time_service" class="col-form-label">Service Duration</label>
-                    <input type="time" class="form-control" id="time_service" name="time_service" th:field="*{time_service}">
+                    <input type="time" class="form-control" id="time_service" name="time_service" th:field="*{time_service}" autofocus="true">
+                    <span class="has-error" th:if="${#fields.hasErrors('time_service')}" th:errors="*{time_service}"></span>
                     <label for="price" class="col-form-label">Price</label>
-                    <input type="number" step="0.01" class="form-control" id="price" name="price" th:field="*{price}">
+                    <input type="number" step="0.01" class="form-control" id="price" name="price" th:field="*{price}" autofocus="true">
+                    <!--<span class="has-error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>-->
                     <label for="id_category" class="col-form-label">Category Name</label>
-                    <select th:field="*{category}"  class="form-control" id="id_category" >
-                        <option value="" selected>choisir</option>
-                        <option th:each="idCat: ${categories}"  th:text="${idCat.name_category}" th:value="${idCat.id_category}" >
+                    <select th:field="*{category}"  class="form-control" id="id_category" name="id_category"  autofocus="true"  >
+                        <option  value=" ">choisir</option>
+                        <option th:each="idCat: ${categories}" th:value="${idCat.id_category}" th:text="${idCat.name_category}"  ></option>
 
                     </select>
 

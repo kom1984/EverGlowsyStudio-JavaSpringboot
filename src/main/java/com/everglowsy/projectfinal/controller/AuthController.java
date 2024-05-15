@@ -20,55 +20,53 @@ public class AuthController{
     @Autowired
 private AuthService authService;
 
-        @GetMapping("/appointment")
-        public String login(Model model, String error, String logout) {
-            if (error != null)
-                model.addAttribute("error", " username and password - invalid.");
 
-            if (logout != null)
-                model.addAttribute("message", " logged out -success.");
-
-            return "publicTemplates/login";
-        }
-    @GetMapping("/admin")
+    /*@GetMapping("/admin")
     public String loginAdmin(Model model, String error, String logout) {
-
         if (error != null)
-            model.addAttribute("error", " Email et Mot de passe - invalide.");
+            model.addAttribute("error", " Email et Mot de Passe - invalide.");
+
+        if (logout != null)
+            model.addAttribute("message", " logged out -success.");
+
+        return "publicTemplates/login";
+    }*/
+    @GetMapping("/login")
+    public String login(Model model, String error, String logout) {
+        if (error != null)
+            model.addAttribute("error", " Email et Mot de Passe - invalide.");
 
         if (logout != null)
             model.addAttribute("message", " logged out -success.");
 
         return "publicTemplates/login";
     }
-        @GetMapping("/signup")
+          @GetMapping("/signup")
         public String signup(Model model) {
 
             model.addAttribute("userForm", new UserModel());
 
             return "publicTemplates/signup";
         }
+         @PostMapping("/signup")
+         public String signup(@ModelAttribute("userForm") @Valid UserModel userForm, BindingResult bindingResult) {
+             // Vérifiez si les mots de passe correspondent
+             if (!userForm.getPassword().equals(userForm.getPasswordConfirm())) {
+                 bindingResult.rejectValue("passwordConfirm", "error.userForm", "Les mots de passe ne correspondent pas");
+             }
 
-        @PostMapping("/signup")
-        public String signup(@ModelAttribute("userForm") UserModel userForm) {
+             // Si il y a des erreurs de validation, retournez à la page d'inscription
+             if (bindingResult.hasErrors()) {
+                 return "publicTemplates/signup";
+             }
 
-            authService.createNewUser(userForm);
+             // Sinon, continuez avec la logique d'inscription
+             authService.createNewUser(userForm);
+             return "publicTemplates/login";
+         }
 
-            return "publicTemplates/login";
-        }
-    /*@PostMapping("/admin")
-    public String signin(@RequestParam("email") String email,
-                         @RequestParam("password") String password) {
 
-        System.out.println("email:"+email);
-
-        System.out.println("Password: " + password);
-
-        // Redirect to another page after processing login
-        return "/admin/all";
-    }*/
-
-        @Autowired
+    @Autowired
         private UserService userService;
 
         @GetMapping({"/admin/User"})
@@ -88,7 +86,7 @@ private AuthService authService;
 
     }
 
-    @GetMapping("/adminDashboard/User/editUser/{id}")
+    @GetMapping("/admin/User/editUser/{id}")
     public String editUser(@PathVariable Long id, Model model)
     {  //(get)trouvé les detail de User au service pour particular id
         UserModel userModel = userService.getUserById(id);
@@ -100,7 +98,7 @@ private AuthService authService;
     @GetMapping("/deleteUser/{id}")
     public String deleteUser(@PathVariable Long id){
         userService.removeUser(id);
-        return "redirect:/adminDashboard/User";
+        return "redirect:/admin/User";
     }
 
 

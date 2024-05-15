@@ -47,16 +47,16 @@
                         <tbody>
 
                         <tr th:each="user:${users}">
-                            <td th:text="${user.id_user}"></td>
-                            <td th:text="${user.firstName}"></td>
-                            <td th:text="${user.lastName}"></td>
-                            <td th:text="${user.email}"></td>
-                            <td th:text="${user.telephone}"></td>
-                            <td th:text="${user.role}"></td>
+                            <td th:utext="${user.id_user}"></td>
+                            <td th:utext="${user.firstName}"></td>
+                            <td th:utext="${user.lastName}"></td>
+                            <td th:utext="${user.email}"></td>
+                            <td th:utext="${user.telephone}"></td>
+                            <td th:utext="${user.role}"></td>
                             <td>
                                 <a
 
-                                        th:href="@{'/adminDashboard/User/editUser/'+${user.id_user}}"
+                                        th:href="@{'/admin/User/editUser/'+${user.id_user}}"
 
 
                                         class="btn btn-sm btn-warning"

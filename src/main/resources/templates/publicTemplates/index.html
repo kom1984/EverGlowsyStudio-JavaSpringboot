@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head
     th:replace="~{fragments/general.html :: head}">
 
@@ -12,7 +13,7 @@
     <div class="container">
         <h1>EverGlowsy-Studio</h1>
         <p>Prenez du temps pour vous. Nous garantissons la mise en valeur de votre beauté..</p>
-        <a href="#appointments" class="btn" id="btnId">Prenez RDV</a>
+        <a href="#appointments" class="btn"  id="btnId">Prenez RDV</a>
     </div>
 </div>
 <!-- about section starts -->
@@ -106,12 +107,12 @@
                         <tbody>
                         <tr>
                             <td>
-                                <h5 th:text="${category.name_category}" class="text-uppercase mb-3"></h5>
+                                <h5 th:utext="${category.name_category}" class="text-uppercase mb-3"></h5>
                                 <ul class="list-group" th:each="service:${services}">
                                     <li th:if="(${category.id_category} == ${service.category.id_category})" class="list-group-item d-flex justify-content-between align-items-center">
-                                        <span th:text="${service.name_service}"> </span>
+                                        <span th:utext="${service.name_service}"> </span>
                                         <div class="justify-content-end">
-                                        <span th:text="${service.price}" ></span>
+                                        <span th:utext="${service.price}" ></span>
                                         <span th:utext="${' &#8364'}"></span>
                                         </div>
                                     </li>
@@ -131,13 +132,13 @@
                     <tbody>
                     <tr>
                         <td>
-                            <h5 th:text="${category.name_category}" class="text-uppercase mb-3"></h5>
+                            <h5 th:utext="${category.name_category}" class="text-uppercase mb-3"></h5>
                             <ul class="list-group" th:each="service:${services}">
                                 <li th:if="(${category.id_category} == ${service.category.id_category})" class="list-group-item d-flex justify-content-between align-items-center">
-                                    <span th:text="${service.name_service}"> </span>
+                                    <span th:utext="${service.name_service}"> </span>
                                     <div class="justify-content-end">
 
-                                    <span  th:text="${service.price}"> </span>
+                                    <span  th:utext="${service.price}"> </span>
 
                                     <span  th:utext="${' &#8364'}"></span>
                                     </div>
@@ -222,23 +223,23 @@
             <div class="row" th:each="category:${categories}">
                 <div class="col-sm-10 mx-auto" >
                     <div class="card">
-                        <div class="card-header text-uppercase" th:text="${category.name_category}">
+                        <div class="card-header text-uppercase" th:utext="${category.name_category}">
 
                         </div>
                         <div class="card-body  d-flex justify-content-between" th:each="service:${services}" th:if="(${category.id_category} == ${service.category.id_category})">
-                            <h5 class="card-title" th:text="${service.name_service}"></h5>
+                            <h5 class="card-title" th:utext="${service.name_service}"></h5>
                             <div class="d-flex ">
 
-                                    <p class="card-text" th:text="${service.price}"> </p>
+                                    <p class="card-text" th:utext="${service.price}"> </p>
                                     <span  th:utext="${'&#8364;'+'&nbsp;'+'&nbsp;'+'&nbsp;'}"></span>
 
 
-                                <div><p class="card-text" th:text="${service.time_service+'&nbsp;'+'&nbsp;'+'&nbsp;'}"> </p>
+                                <div><p class="card-text" th:utext="${service.time_service+'&nbsp;'+'&nbsp;'+'&nbsp;'}"> </p>
 
                                 </div>
 
                                 <div>
-                                    <a href="appointment1" data-th-href="@{'appointment1/'+${service.id_service}}" class="btn btn-secondary"  >Choisir</a>
+                                    <a href="login.html" data-th-href="@{'bookService/'+${service.id_service}}" class="btn btn-secondary"  >Choisir</a>
 
                         </div>
 

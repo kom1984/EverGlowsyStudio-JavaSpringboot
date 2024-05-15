@@ -35,10 +35,15 @@
             <div sec:authorize="isAuthenticated()">
                 Text visible only to authenticated users.
             </div>-->
-            Authenticated user email:
+            Authenticated User Email:
             <div sec:authentication="name"></div>
-            Authenticated user roles:
+            Authenticated User Role:
             <div sec:authentication="principal.authorities"></div>
+<!--            <div sec:authentication="userName"></div>
+            Authenticated UserName:
+            <div sec:authentication="principal.userName"></div>
+            Authenticated UserName: <div th:text="${#authentication.principal.userName}"></div>-->
+
         </main>
 
     </div>

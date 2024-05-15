@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.PrintStream;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,10 +24,10 @@ public class UserService implements UserDetailsService {
 
     @Override
     @Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(String username) {
-        UserModel user = userRepository.findByEmail(username);
+    public UserDetails loadUserByUsername(String email) {
+        UserModel user = userRepository.findByEmail(email);
 
-        if (user == null) throw new UsernameNotFoundException("User not found with this email: " + username);
+        if (user == null) throw new UsernameNotFoundException("User not found with this email: " + email);
 
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
         authorities.add(new SimpleGrantedAuthority(user.getRole().getText()));
@@ -35,7 +36,6 @@ public class UserService implements UserDetailsService {
 
 
     }
-
 
 
     public UserModel findByUserEmail(String email) {
@@ -50,9 +50,7 @@ public class UserService implements UserDetailsService {
     {
         userRepository.save(saveuser);
     }
-   /* public Optional<UserModel> findById(Long userId) {
-        return userRepository.findById(userId);
-    }*/
+
 
     public List<UserModel> getAllUsers() {
         return userRepository.findAllByRole(Role.USER);

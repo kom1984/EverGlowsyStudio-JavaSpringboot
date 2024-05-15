@@ -41,16 +41,15 @@ public class CategoryController {
     @GetMapping("/admin/Category")
     public String adminCategory( Model model)
     {
-
         model.addAttribute("categories",categoryService.getAllCategory());
         return "adminTemplates/Category/categoryDashboard";
     }
     @PostMapping("/saveCategory")
     public String saveCategory(@Valid @ModelAttribute("Category") CategoryModel categoryModel, BindingResult bindingResult) {
-        if(bindingResult.hasErrors())
-        {
-            return "adminTemplates/Category/editCategory";
-        }
+       /* if (bindingResult.hasErrors()) {
+
+            return "adminTemplates/Category/categoryDashboard";
+        }*/
        categoryService.saveCategory(categoryModel);
         return "redirect:admin/Category";
 

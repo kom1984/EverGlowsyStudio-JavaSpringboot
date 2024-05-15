@@ -5,6 +5,12 @@
     }
 body {
           background-color: #f8f9fa;
+          .has-error {
+              color: red;
+          }
+
+          .has-success {
+              color: rgb(9, 255, 0);
       }
 
 .admin-header {

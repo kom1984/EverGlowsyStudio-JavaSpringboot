@@ -29,12 +29,12 @@ public class AppointmentController {
     private AppointmentService appointmentService;
     @Autowired
     private ServiceHandledService serviceHandledService;
-    @GetMapping("/appointment1")
+    @GetMapping("/bookService")
     public String rdv()
     {
-        return "publicTemplates/appointment1";
+        return "publicTemplates/bookService";
     }
-    @GetMapping("/appointment1/{id}")
+    @GetMapping("/bookService/{id}")
     public String serviceId(@PathVariable Long id, Model model)
 
     {
@@ -50,10 +50,10 @@ public class AppointmentController {
         model.addAttribute("workingDays", workingDays);
         model.addAttribute("timeSlotsByDate", timeSlotsByDate);
 
-        return "publicTemplates/appointment1";
+        return "publicTemplates/bookService";
     }
 
-    @GetMapping("/admin/Appointment")
+        @GetMapping("/admin/Appointments")
     public String adminAppointment( Model model)
     {
 
@@ -61,7 +61,7 @@ public class AppointmentController {
         return "adminTemplates/Appointment/appointmentDashboard";
     }
 
-    @GetMapping("/admin/Appointment/addAppointment")
+    @GetMapping("/admin/Appointments/addAppointment")
     public String addAppointment(Model model)
     {
         model.addAttribute("services",new ServiceHandledModel());

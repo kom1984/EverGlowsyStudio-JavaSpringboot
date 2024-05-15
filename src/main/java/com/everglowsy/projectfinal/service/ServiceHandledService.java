@@ -17,11 +17,6 @@ public class ServiceHandledService {
 
         return serviceHandledRepository.findAll();
     }
-    /*public List<ServiceHandledModel> getServiceCategory()
-    {
-        return serviceHandledRepository.getAllIdServiceCategory();
-    }*/
-
     public ServiceHandledModel getServiceById(Long id)
     {
         return serviceHandledRepository.findById(id).get();
