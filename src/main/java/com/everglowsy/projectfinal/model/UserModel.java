@@ -23,7 +23,6 @@ public class UserModel {
             message = "le mot de passe doit comporter au moins 12 caractères")
     private String password;
     @Transient
-    @NotEmpty( message ="ne doit pas être null ou vide")
     @Size(min = 12,
             message = "le mot de passe doit comporter au moins 12 caractères")
     private String passwordConfirm;

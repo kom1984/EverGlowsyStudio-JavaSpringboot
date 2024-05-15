@@ -48,6 +48,7 @@ public class UserService implements UserDetailsService {
     }
     public void saveUser(UserModel saveuser)
     {
+        System.out.println("Saving user: " + saveuser);
         userRepository.save(saveuser);
     }
 
