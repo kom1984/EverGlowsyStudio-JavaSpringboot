@@ -36,11 +36,20 @@ body {
       font-size: 5em;
 
   }
+ .client-name {
+    color: #fff;
+}
 .banner p
     {
         font-size: 3em;
 
     }
+    #btnBlue{
+     background-color:#ff8fab;
+     width:300px;
+     color:#fff;
+     }
+
 
  #btnId{
  width:150px;
@@ -71,6 +80,7 @@ body {
 	text-transform: uppercase;
 	font-weight: 500;
 	padding:0 4px;
+	margin:0px;
 }
  a:after{
 	content:" ";
@@ -100,16 +110,20 @@ body {
      color:#213F99;
      letter-spacing: 1px;
     font-weight: 500;
+    white-space: nowrap;
 	
+}
+.price{
+
+margin-right:50px;
+}
+.time{
+
+margin-right:10px;
 }
 
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
-	/*border: 3px gray solid;
-	background-color:#F2D4D6 ;	
-	border-radius : 3px;
-	box-shadow: 2px 2px 4px black;
-		text-decoration: underline;
-		color: #F2D4D6;*/
+
 		color:#fff;
 }
 
@@ -303,7 +317,12 @@ color:#213F99! important;
 	.nav-item a:hover:after{
 			width:0px;
 		}
-
+.price{
+margin-right:5px;
+}
+.time{
+margin-right:5px;
+}
 		#dashid{
             	display:none;
             	}
@@ -408,6 +427,13 @@ margin-left:10px !important;
 .ui-datepicker-week-end .ui-state-disabled {
         display: none;
       }
+.appointmentcontainer{
+ max-width: 100%;
+            padding: 10% 10% 10% 20%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+}
 
 /***********************************************
            Login page/form
@@ -521,68 +547,7 @@ margin-left:10px !important;
 
 /*******************************
             Fin de login page/form
-            .logincontainer {
-                    max-width: 100%;
-                        padding: 10% 0% 10% 0%;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-            }
 
-            .flex_container {
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                flex-wrap: wrap;
-            }
-
-            .form-signin {
-                max-width: 330px;
-                padding: 15px;
-                margin: 0 auto;
-            }
-
-
-            .form-signin .form-signin-heading,
-            .form-signin .checkbox {
-                margin-bottom: 10px;
-            }
-
-            .form-signin .checkbox {
-                font-weight: normal;
-            }
-
-            .form-signin .form-control {
-                position: relative;
-                height: auto;
-                -webkit-box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                box-sizing: border-box;
-                padding: 10px;
-                font-size: 16px;
-            }
-
-            .has-error {
-                color: red;
-            }
-
-            .has-success {
-                color: rgb(9, 255, 0);
-
-            .form-signin .form-control:focus {
-                z-index: 2;
-            }
-
-            .form-signin input {
-                margin-top: 10px;
-                border-bottom-right-radius: 0;
-                border-bottom-left-radius: 0;
-            }
-
-            .form-signin button {
-                margin-top: 10px;
-
-            }
 ***************************/
 }
 

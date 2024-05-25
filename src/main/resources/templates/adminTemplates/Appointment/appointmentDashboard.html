@@ -26,39 +26,80 @@
             <!-- Page content  -->
             <h2>Liste de l'Appointement </h2>
 
+            <a href="/admin/Appointments/addAppointment"
+               class="btn btn-primary mb-3"  >
+                <i class="fas fa-plus"></i>Book Service
+            </a>
 
 
 
-            <!-- User List Table -->
+
             <div class="outer-wrapper">
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Action</th>
+                            <th>ID_APPOINTMENT</th>
+                            <th>ID_SERVICE</th>
+                            <th>DATE_APPOINTMENT</th>
+                            <th>TIME_APPOINTMENT(HH:MM)</th>
+                            <th>BOOKED STATUS</th>
+                            <th>ID_USER</th>
+                            <th>ACTION</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody><tr th:each="appointment:${appointments}">
+                            <td th:utext="${appointment.id_appointment}"></td>
+                            <td th:utext="${appointment.serviceHandledModel.name_service}"></td>
+                           <td th:utext="${#dates.format(appointment.date_appointment,'dd/MM/yyyy')}"></td>
+                           <td th:utext="${appointment.time_appointment}"></td>
+                          <td th:utext="${appointment.status_rdv}"></td>
+                          <td th:utext="${appointment.userModel.firstName+ ' '+ appointment.userModel.lastName}"></td>
 
-                        <tr>
-                           <td></td>
-                            <td>
-                                <a  href="#" class="btn btn-sm btn-warning">
-                                    <i class="fas fa-edit"></i> Edit
-                                </a>
+                          <td>
+                              <a
+                                      th:href="@{'/admin/Appointments/editAppointment/'+${appointment.id_appointment}}" class="btn btn-sm btn-warning">
+                                  <i class="fas fa-edit"></i> Edit
+                              </a>
 
-                                <a  href="#" class="btn btn-sm btn-danger">
-                                    <i class="fas fa-trash"></i> Delete
-                                </a>
-                            </td>
-                        </tr>
+                              <a
+                                      th:href="@{'/admin/Appointments/deleteAppointment/'+${appointment.id_appointment}}"
+                                      class="btn btn-sm btn-danger"
+                                      id="deleteBtn"data-toggle="modal"
+                                      data-target="#deleteAppointmentModal">
+                                  <i class="fas fa-trash"></i> Delete
+                              </a>
+                          </td>
+                      </tr>
 
-                        </tbody>
-                    </table>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+          <!-- Delete Service Modal -->
+            <div class="modal" tabindex="-1" role="dialog" id="deleteAppointmentModal">
+
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Supprimer Appointment</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <p>Êtes-vous sûr de supprimer les données</p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <a id="confirmDeleteButton"  href="" class="btn btn-primary">OUI,SUPPRIMER</a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">ANNULER</button>
+                        </div>
+                    </div>
                 </div>
+
             </div>
-            <!-- Modals for CRUD operations -->
 
         </main>
 
@@ -74,6 +115,4 @@
 </body>
 
 </html>
-
-
 

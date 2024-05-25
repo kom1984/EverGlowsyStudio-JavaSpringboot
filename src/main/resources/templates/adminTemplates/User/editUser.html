@@ -24,59 +24,57 @@
         >
             <!-- Page content -->
             <h2> Edit User</h2>
-            <form th:action="@{/saveUser}" th:object="${users}" method="post" class="border border-dark">
+            <form th:action="@{/registerUser}" th:object="${users}" method="post" class="border border-dark">
                 <div class="mb-1 row p-4">
                     <input type="hidden"  class="form-control" th:field="*{id_user}">
                     <label for="LastName" class="col-sm-2 col-form-label">Nom</label>
                     <div class="col-sm-10">
-
-                        <input type="text"  class="form-control" id="LastName" th:field="*{lastName}">
+                        <input type="text" class="form-control" id="LastName" th:field="*{lastName}">
+                        <span class="has-error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
                     </div>
+
                     <label for="FirstName" class="col-sm-2 col-form-label">Prenom</label>
                     <div class="col-sm-10">
+                        <input type="text" class="form-control" id="FirstName" th:field="*{firstName}">
+                         <span class="has-error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+                     </div>
 
-                        <input type="text"  class="form-control" id="FirstName" th:field="*{firstName}">
-                    </div>
+                     <label for="email" class="col-sm-2 col-form-label">Email</label>
+                     <div class="col-sm-10">
+                         <input type="email" class="form-control" id="email" th:field="*{email}">
+                         <span class="has-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                     </div>
 
-                    <label for="email" class="col-sm-2 col-form-label">Email</label>
-                    <div class="col-sm-10">
+                     <label for="telephone" class="col-sm-2 col-form-label">Portable Numero</label>
+                     <div class="col-sm-10">
+                         <input type="tel" class="form-control" id="telephone" th:field="*{telephone}">
+                         <span class="has-error" th:if="${#fields.hasErrors('telephone')}" th:errors="*{telephone}"></span>
+                     </div>
 
-                        <input type="email"  class="form-control" id="email" th:field="*{email}">
-                    </div>
+                     <label for="role" class="col-sm-2 col-form-label">Role</label>
+                     <div class="col-sm-10">
+                         <input type="text" class="form-control" id="role" th:field="*{role}">
+                     </div>
 
+                     <input type="hidden" class="form-control" th:field="*{password}">
+                 </div>
 
-                    <label for="telephone" class="col-sm-2 col-form-label">Portable Numero</label>
-                    <div class="col-sm-10">
-
-                        <input type="tel"  class="form-control" id="telephone" th:field="*{telephone}">
-                    </div>
-
-
-                    <label for="role" class="col-sm-2 col-form-label">Role</label>
-                    <div class="col-sm-10">
-
-                        <input type="text"  class="form-control" id="role" th:field="*{role}">
-                    </div>
-                    <input type="hidden"  class="form-control" th:field="*{password}">
-
-                </div>
-                <div class="mb-1 row px-4 justify-content-center editCatStyle">
-
-                    <div class="col-6 text-center">
-                        <button type="submit" class="btn btn-primary m-4 px-4">MODIFIER</button>
-                        <button type="button" class="btn btn-secondary m-4 px-4" onclick="history.back()">ANNULER</button>
-                    </div>
-                </div>
-
-            </form>
-
-        </main>
-
-    </div>
-</div>
+                 <div class="mb-1 row px-4 justify-content-center editCatStyle">
+                     <div class="col-6 text-center">
+                         <button type="submit" class="btn btn-primary m-4 px-4">MODIFIER</button>
+                         <button type="button" class="btn btn-secondary m-4 px-4" onclick="history.back()">ANNULER</button>
+                     </div>
+                 </div>
+             </form>
 
 
-<!-- Bootstrap JS and Popper.js -->
+         </main>
+
+     </div>
+ </div>
+
+
+ <!-- Bootstrap JS and Popper.js -->
 <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->

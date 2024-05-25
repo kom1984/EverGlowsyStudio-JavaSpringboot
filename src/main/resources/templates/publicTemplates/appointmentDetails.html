@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="~{fragments/general.html :: head}">
+
+    <title th:text="${pageTitle}">EverGlowsyStudio-Détails-RDV</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const successMessage = [[${successMessage}]];
+            if (successMessage) {
+                alert(successMessage);
+            }
+        });
+    </script>
+</head>
+<body>
+<nav
+        th:replace="~{fragments/general.html :: navbar}">
+</nav>
+<div class="appointmentcontainer my-5">
+
+<div class="row my-5">
+    <div th:if="${successMessage}" class="alert alert-success" role="alert">
+        <span th:text="${successMessage}"></span>
+    </div>
+<h1>Détails du rendez-vous</h1>
+<p><strong>Nom de User:</strong> <span th:text="${appointment.userModel.firstName+' '+appointment.userModel.lastName}"></span></p>
+<p><strong>Prestation Réservée:</strong> <span th:text="${appointment.serviceHandledModel.name_service}"></span></p>
+<p><strong>Date Réservée:</strong> <span th:text="${#dates.format(appointment.date_appointment,'dd/MM/yyyy')}"></span></p>
+<p><strong>Heure Réservée:</strong> <span th:text="${appointment.time_appointment}"></span></p>
+<p><strong>Prix de Prestation:</strong> <span th:text="${appointment.serviceHandledModel.price+'€'}"></span></p>
+
+<h2>Souhaitez-vous prendre un autre rendez-vous?</h2>
+<a href="/">Oui, prendre un autre rendez-vous</a>
+<p>Non, cliquez sur la barre de navigation pour vous déconnecter</p>
+</div>
+</div>
+
+<footer th:replace="~{fragments/general.html :: footer}"></footer>
+<!-- footer ends -->
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</body>
+</html>

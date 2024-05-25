@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
@@ -34,16 +35,25 @@ private UserDetailsService userService;
                         .requestMatchers( "/","/signup", "/js/**", "/images/**", "/css/**").permitAll() // Permit access to these URLs
                         .requestMatchers("/admin/**").hasAuthority("ADMIN") // Requires ADMIN authority for admin URLs
                       //  .requestMatchers("/admin/all","/admin/Appointments").hasRole("EMPLOYEE") // Requires EMPLOYEE authority for admin URLs
-                        .requestMatchers("/bookService","/bookService/**").hasAuthority("USER") // Requires authentication for appointment URLs
+                        .requestMatchers("/admin/**","/admin/Appointments", "/admin/Appointments/**").hasAuthority("EMPLOYEE")
+                        .requestMatchers("/bookService/**","/appointmentDetails/**").hasAuthority("USER") // Requires authentication for appointment URLs
                         .anyRequest().authenticated() // Requires authentication for any other request
                 )
                 .formLogin(form -> form.loginPage("/login").usernameParameter("email").defaultSuccessUrl("/",true)
                         .permitAll())
-                .logout(logout->logout.permitAll());
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/") // Redirect to the index page after logout
+                        .permitAll()
+                );
+
+                //.logout(logout->logout.permitAll());
                 return http.build();
     }
 
-
+    @RequestMapping("/403")
+    public String accessDenied() {
+        return "403"; // Return a view named '403'
+    }
     @Autowired
         void configure(AuthenticationManagerBuilder builder) throws Exception {
             builder.userDetailsService(userService);

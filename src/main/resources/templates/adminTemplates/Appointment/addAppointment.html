@@ -2,7 +2,7 @@
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head
         th:replace="~{fragments/generalAdmin.html :: head}">
-</head>
+  </head>
 <body>
 <!-- Admin Header -->
 <div th:replace="~{fragments/generalAdmin.html :: header}">
@@ -22,40 +22,41 @@
                 role="main"
                 class="col-lg-10 col-md-9 col-8 px-4 admin-content"
         >
-            <!-- Page content -->
-            <h2> Services</h2>
-            <form th:action="@{/saveServices}" th:object="${services}" method="post" class="border border-dark">
+            <!-- Page content +' ' + user.lastName-->
+            <h2> Appointment</h2>
+            <form th:action="@{/saveAdminAppointment}" th:object="${appointments}" method="post" class="border border-dark">
                 <div class="mb-1 row p-4">
-                    <input type="hidden" class="form-control" name="name_service" th:field="*{id_service}">
-                    <label for="name_service" class="col-form-label">Nom_Service</label>
-                    <input type="text" class="form-control" id="name_service" name="name_service" th:field="*{name_service}" autofocus="true">
-                    <span class="has-error" th:if="${#fields.hasErrors('name_service')}" th:errors="*{name_service}"></span>
+                    <input type="hidden" class="form-control" name="id_appointment" th:field="*{id_appointment}">
+
+                    <label for="name_service" class="col-form-label">Service Name</label>
+                    <select id="name_service" th:field="*{serviceHandledModel.id_service}"  class="form-control" autofocus="true"  >
+
+                        <option th:each="service: ${services}" th:value="${service.id_service}" th:text="${service.name_service}+'  ------  '+${service.time_service}+'  ------  '+${service.price}+'€'"  ></option>
+
+                    </select>
+
+                    <label for="dateAppointment" class="col-form-label">Booked Date</label>
+                    <input type="date" class="form-control" id="dateAppointment" name="date_appointment" th:field="*{date_appointment}" autofocus="true">
+
+                    <label for="time_appointment" class="col-form-label">Booked Time</label>
+                    <input type="time" class="form-control" id="time_appointment" name="time_appointment" th:field="*{time_appointment}" autofocus="true">
+                    <span class="has-error" th:if="${#fields.hasErrors('time_appointment')}" th:errors="*{time_appointment}"></span>
 
 
+                    <label for="status" class="col-form-label">Booked Status</label>
+                    <select id="status" th:field="*{status_rdv}" class="form-control" autofocus="true">
+                        <option th:value="Confirmed" th:text="'Confirmed'">Confirmed</option>
+                        <option th:value="Pending" th:text="'Pending'">Pending</option>
+                        <option th:value="Cancelled" th:text="'Cancelled'">Cancelled</option>
+                    </select>
 
 
+                    <label for="userName" class="col-form-label">User Name</label>
 
 
-                    <label for="description" class="col-form-label">Description</label>
-                    <input type="text" class="form-control" id="description" name="description" th:field="*{description}" autofocus="true">
-                    <label for="image" class="col-form-label">Image</label>
-                    <input type="file" class="form-control" id="image" name="image" accept="image/png,image/jpeg" th:field="*{image}" autofocus="true">
-                    <label for="time_service" class="col-form-label">Service Duration</label>
-                    <input type="time" class="form-control" id="time_service" name="time_service" th:field="*{time_service}" autofocus="true">
-                    <span class="has-error" th:if="${#fields.hasErrors('time_service')}" th:errors="*{time_service}"></span>
-                    <label for="price" class="col-form-label">Price</label>
-                    <input type="number" step="0.01" class="form-control" id="price" name="price" th:field="*{price}" autofocus="true">
-                    <!--<span class="has-error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>-->
-                    <label for="category" class="col-form-label">Category Name</label>
-                    <!--<select id="category" name="categoryId" th:field="*{category.id_category}">
-                    <select id="category" name="categoryId" required>
-            <option th:each="category : ${categories}" th:value="${category.id_category}" th:text="${category.name_category}"></option>
-        </select>
-                        <option th:each="category : ${categories}" th:value="${category.id_category}" th:text="${category.name_category}"></option>-->
+                    <select id="userName" th:field="*{userModel.id_user}"  class="form-control" autofocus="true"  >
 
-                    <select id="category" th:field="*{category.id_category}"  class="form-control" autofocus="true"  >
-
-                        <option th:each="category: ${categories}" th:value="${category.id_category}" th:text="${category.name_category}"  ></option>
+                        <option th:each="user: ${users}" th:value="${user.id_user}" th:text="${user.firstName+' ' + user.lastName}"  ></option>
 
                     </select>
 
@@ -70,7 +71,6 @@
                 </div>
 
             </form>
-
         </main>
 
     </div>
@@ -172,6 +172,9 @@
 </body>
 
 </html>
+
+
+
 
 
 

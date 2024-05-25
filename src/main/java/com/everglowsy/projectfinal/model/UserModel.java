@@ -2,8 +2,17 @@ package com.everglowsy.projectfinal.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+import java.util.Set;
+
+@Data
 @Entity
 @Table(name="User")
+@AllArgsConstructor
 public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,35 +32,23 @@ public class UserModel {
             message = "le mot de passe doit comporter au moins 12 caractères")
     private String password;
     @Transient
-    @NotEmpty( message ="ne doit pas être null ou vide")
     @Size(min = 12,
             message = "le mot de passe doit comporter au moins 12 caractères")
     private String passwordConfirm;
     @Enumerated(EnumType.STRING)
     private Role role;
-    public UserModel(String email, String password, Role role) {
-        this.email = email;
-        this.password = password;
-        this.role = role;
 
-    }
-    public UserModel(String email) {
-        this.email = email;
-    }
-
-    public UserModel() {
-
-    }
+    @OneToMany(mappedBy = "userModel", fetch = FetchType.LAZY)
+    private Set<AppointmentModel> appointmentModelList;
 
     public Long getId_user() {
         return id_user;
     }
 
-
-
     public void setId_user(Long id_user) {
         this.id_user = id_user;
     }
+
     public String getFirstName() {
         return firstName;
     }
@@ -72,6 +69,10 @@ public class UserModel {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getTelephone() {
         return telephone;
     }
@@ -84,20 +85,16 @@ public class UserModel {
         return password;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getPasswordConfirm() {
         return passwordConfirm;
     }
 
     public void setPasswordConfirm(String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public Role getRole() {
@@ -108,15 +105,39 @@ public class UserModel {
         this.role = role;
     }
 
-//,firstName='%s',lastName='%s' ,firstName,lastName
+    public Set<AppointmentModel> getAppointmentModelList() {
+        return appointmentModelList;
+    }
 
+    public void setAppointmentModelList(Set<AppointmentModel> appointmentModelList) {
+        this.appointmentModelList = appointmentModelList;
+    }
+
+    public UserModel(String email, String password, Role role) {
+        this.email = email;
+        this.password = password;
+        this.role = role;
+
+    }
+    public UserModel(String email) {
+        this.email = email;
+    }
+
+    public UserModel() {
+
+    }
    @Override
     public String toString() {
-        String result = String.format(
-                "User[id=%d, name='%s',userName='%s %s']%n",
-                id_user, email ,firstName,lastName);
+        String result;
+       result = String.format(
+               "User[id=%d, email='%s', firstName='%s']%n",
+               id_user, email,firstName);
 
-        return result;
+       return result;
+    }
+    public void setId(Long id_user) {
+
+        this.id_user = id_user;
     }
 
 
