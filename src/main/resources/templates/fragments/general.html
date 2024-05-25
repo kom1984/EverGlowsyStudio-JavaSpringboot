@@ -4,46 +4,38 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EverGlowsyHomePage</title>
+
+    <!-- SEO Tags -->
+    <title th:text="${pageTitle}">Everglowsy Studio</title>
+    <meta name="description" th:content="${pageDescription}" content="Description par défaut d'Everglowsy Studio">
+    <meta name="keywords" th:content="${pageKeywords}" content="beauté, studio, everglowsy, services, rendez-vous">
+    <meta name="author" content="Everglowsy Studio">
+    <link rel="canonical" th:href="@{${canonicalUrl}}" />
+
+
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
-    <!--<link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-    />-->
     <link rel="stylesheet" th:href="@{/css/style.css}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-   <link
-            rel="stylesheet"
-            href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
-    <!--<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.13.18/jquery.timepicker.min.css">-->
-   <link
-     href="https://fonts.googleapis.com/css2?family=Merienda:wght@500&family=Roboto+Flex:opsz@8..144&display=swap"
-     rel="stylesheet"
-   />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merienda:wght@500&family=Roboto+Flex:opsz@8..144&display=swap"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.6/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
 
 </head>
-
 <body>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" th:fragment="navbar">
    <div class="container">
-       <a class="navbar-brand" href="#"
-       ><img class="d-inline-block align-top"
+       <a class="navbar-brand" href="#">
+           <img class="d-inline-block align-top"
                th:src="@{/images/E-bigblue.png}"
                width="60"
                height="60"
-
-               alt=""
-       />
-           Everglowsy studio</a
-       >
-       <!-- Image and text -->
-
-        <button
+               alt="logo"/>Everglowsy studio</a>
+       <button
                 class="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -55,7 +47,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form id="logoutForm" method="POST" th:action="@{/logout}"></form>
+            <form id="logoutForm" method="POST" th:action="@{/logout}">
+                    <input type="hidden" name="redirect" value="/" />
+            </form>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/#}" >Home</a>
@@ -75,44 +69,30 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/#contact}" >Contact</a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/all"  sec:authorize="hasAuthority('ADMIN')">ADMIN</a>
+                    <a class="nav-link" href="#"  sec:authorize="hasAuthority('USER')"><span th:text="${firstName}" class="client-name"></span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn" onclick="document.forms['logoutForm'].submit()" sec:authorize="hasAuthority('ADMIN')" >LOGOUT</a>
+                    <a class="nav-link" href="#" onclick="document.forms['logoutForm'].submit()"  sec:authorize="hasAuthority('USER')" >LOGOUT</a>
                 </li>
 
-               <!-- <div class="dropdown show">
-                    <a class="btn btn-secondary dropdown-toggle" sec:authorize="hasAuthority('USER')" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        CLIENT
-                    </a>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">PROFILE</a>
-                        <a class="dropdown-item" onclick="document.forms['logoutForm'].submit()"  sec:authorize="hasAuthority('USER')" >DÉCONNEXION</a>
-                    </div>
-                </div>-->
-
-               <li class="nav-item">
-                    <a class="nav-link" href="#"  sec:authorize="hasAuthority('USER')">CLIENT</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/all"  sec:authorize="hasAuthority('ADMIN')"><span th:text="${firstName}"class="client-name"></span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn"  onclick="document.forms['logoutForm'].submit()"  sec:authorize="hasAuthority('USER')" >LOGOUT</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/all"  sec:authorize="hasAuthority('EMPLOYEE')">EMPLOYEE</a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn"  onclick="document.forms['logoutForm'].submit()"  sec:authorize="hasAuthority('EMPLOYEE')" >LOGOUT</a>
+                    <a class="nav-link" href="#" onclick="document.forms['logoutForm'].submit()" sec:authorize="hasAuthority('ADMIN')" >LOGOUT</a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/all"  sec:authorize="hasAuthority('EMPLOYEE')"><span th:text="${firstName}" class="client-name"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="document.forms['logoutForm'].submit()"  sec:authorize="hasAuthority('EMPLOYEE')" >LOGOUT</a>
+                </li>
             </ul>
-
-
         </div>
-
     </div>
-
 </nav>
 
 

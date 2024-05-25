@@ -2,6 +2,8 @@
 <html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head
         th:replace="~{fragments/general.html :: head}">
+
+    <title>EverGlowsySignupPage</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" >
@@ -60,7 +62,7 @@
                     <span class="has-error" th:if="${#fields.hasErrors('passwordConfirm')}"
                           th:errors="*{passwordConfirm}"></span>
                 </div>
-                <button class="btn btn-lg btn-block"  type="submit" style="background-color:dodgerblue;width:300px;color:#fff">Soumettre</button>
+                <button class="btn btn-lg btn-block"  type="submit"  id="btnBlue" >Soumettre</button>
             </form>
                    </div>
                </div>

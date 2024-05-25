@@ -3,10 +3,11 @@ package com.everglowsy.projectfinal.Service;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import com.everglowsy.projectfinal.model.CategoryModel;
 import com.everglowsy.projectfinal.model.ServiceHandledModel;
 import com.everglowsy.projectfinal.repository.ServiceHandledRepository;
 import com.everglowsy.projectfinal.service.ServiceHandledService;
@@ -28,61 +29,62 @@ public class ServiceHandledServiceTest {
     void setUp() {
         MockitoAnnotations.initMocks(this);
     }
-
     @Test
     void testGetAllServices() {
-        // Mock list of services
-        List<ServiceHandledModel> services = new ArrayList<>();
-        services.add(new ServiceHandledModel(1L, "Manucure", "Description 1", "Image 1", "Time 1", 10.0, null, null));
-        services.add(new ServiceHandledModel(2L, "Pose Résine", "Description 2", "Image 2", "Time 2", 15.0, null, null));
+        // Mocking behavior of the repository
+        when(serviceHandledRepository.findAll()).thenReturn(Arrays.asList(
+                new ServiceHandledModel(1L, "Manucure", "Description 1", "Image 1", "Time 1", 10.0, null, null),
+                new ServiceHandledModel(2L, "Pose Résine", "Description 2", "Image 2", "Time 2", 20.0, null, null)
+        ));
 
-        // Mock repository behavior
-        when(serviceHandledRepository.findAll()).thenReturn(services);
+        // Calling the method under test
+        List<ServiceHandledModel> services = serviceHandledService.getAllServices();
 
-        // Perform getting all services
-        List<ServiceHandledModel> retrievedServices = serviceHandledService.getAllServices();
-
-        // Verify that the correct list of services is returned
-        assertNotNull(retrievedServices);
-        assertEquals(2, retrievedServices.size());
+        // Verifying the result
+        assertEquals(2, services.size());
     }
 
     @Test
     void testGetServiceById() {
-        // Mock service
-        ServiceHandledModel service = new ServiceHandledModel(1L, "Manucure", "Description 1", "Image 1", "Time 1", 10.0, null, null);
+        // Mocking behavior of the repository
+        ServiceHandledModel serviceToReturn = new ServiceHandledModel(1L, "Manucure", "Description 1", "Image 1", "Time 1", 10.0, null, null);
+        when(serviceHandledRepository.findById(1L)).thenReturn(Optional.of(serviceToReturn));
 
-        // Mock repository behavior
-        when(serviceHandledRepository.findById(1L)).thenReturn(Optional.of(service));
+        // Calling the method under test
+        ServiceHandledModel service = serviceHandledService.getServiceById(1L);
 
-        // Perform getting service by id
-        ServiceHandledModel retrievedService = serviceHandledService.getServiceById(1L);
-
-        // Verify that the correct service is returned
-        assertNotNull(retrievedService);
-        assertEquals(service, retrievedService);
+        // Verifying the result
+        assertNotNull(service);
+        assertEquals("Manucure", service.getName_service());
     }
 
     @Test
     void testSaveService() {
-        // Mock service
-        ServiceHandledModel service = new ServiceHandledModel(1L, "Manucure", "Description 1", "Image 1", "Time 1", 10.0, null, null);
+        // Create a service object to save
+        ServiceHandledModel serviceToSave = new ServiceHandledModel();
+        serviceToSave.setName_service("Manucure");
+        serviceToSave.setDescription("Description");
+        serviceToSave.setImage("Image");
+        serviceToSave.setTime_service("10:30");
+        serviceToSave.setPrice(10.0);
 
-        // Perform saving service
-        serviceHandledService.saveService(service);
+        // Mocking behavior of the repository
+        when(serviceHandledRepository.save(serviceToSave)).thenReturn(serviceToSave);
 
-        // Verify that repository save method was called with the service
-        verify(serviceHandledRepository, times(1)).save(service);
+        // Calling the method under test
+        serviceHandledService.saveService(serviceToSave);
+
+        // Verifying that the save method was called with the correct service
+        verify(serviceHandledRepository, times(1)).save(serviceToSave);
     }
 
     @Test
     void testDeleteService() {
-        // Perform deleting service by id
+        // Calling the method under test
         serviceHandledService.deleteService(1L);
 
-        // Verify that repository deleteById method was called with the correct id
+        // Verifying that the delete method was called with the correct ID
         verify(serviceHandledRepository, times(1)).deleteById(1L);
     }
 
-    // Add more test methods as needed...
 }

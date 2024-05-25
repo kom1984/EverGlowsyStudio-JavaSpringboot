@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -23,6 +24,20 @@ public class CategoryModel {
     private Long id_category;
     @Column(name = "NAME_CATEGORY")
     private String name_category;
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ServiceHandledModel> serviceHandledModel= new ArrayList<>();
+    public void addServiceHandledModel(ServiceHandledModel serviceHandledModel) {
+        this.serviceHandledModel.add(serviceHandledModel);
+        serviceHandledModel.setCategory(this);
+    }
+
+    public void removeServiceHandledModel(ServiceHandledModel serviceHandledModel) {
+        this.serviceHandledModel.remove(serviceHandledModel);
+        serviceHandledModel.setCategory(null);
+    }
+
+
+
 }
 
     

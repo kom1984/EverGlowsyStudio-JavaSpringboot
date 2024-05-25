@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -39,7 +40,6 @@ public class ServiceHandledModel {
     @Column(name="TIME_SERVICE")
     private String time_service;
 
-
     @Column(name="PRICE")
     private Double price;
 
@@ -47,6 +47,72 @@ public class ServiceHandledModel {
     @JoinColumn(name = "id_category", referencedColumnName="id_category",insertable = true, updatable = true )
     private CategoryModel category;
 
-    @OneToMany(mappedBy = "serviceHandledModel")
-    private List<AppointmentModel> appointmentModelList;
+    @OneToMany(mappedBy = "serviceHandledModel", fetch = FetchType.LAZY)
+    private Set<AppointmentModel> appointmentModelList;
+
+    public Long getId_service() {
+        return id_service;
+    }
+
+    public void setId_service(Long id_service) {
+        this.id_service = id_service;
+    }
+
+    public String getName_service() {
+        return name_service;
+    }
+
+    public void setName_service(String name_service) {
+        this.name_service = name_service;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getTime_service() {
+        return time_service;
+    }
+
+    public void setTime_service(String time_service) {
+        this.time_service = time_service;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public CategoryModel getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryModel category) {
+        this.category = category;
+    }
+
+    public Set<AppointmentModel> getAppointmentModelList() {
+        return appointmentModelList;
+    }
+
+    public void setAppointmentModelList(Set<AppointmentModel> appointmentModelList) {
+        this.appointmentModelList = appointmentModelList;
+    }
+
+
 }

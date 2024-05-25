@@ -5,7 +5,9 @@ import com.everglowsy.projectfinal.model.UserModel;
 import com.everglowsy.projectfinal.repository.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -37,7 +39,14 @@ public class UserService implements UserDetailsService {
 
     }
 
-
+    public UserModel getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            String email = ((UserDetails) authentication.getPrincipal()).getUsername();
+            return userRepository.findByEmail(email);
+        }
+        return null;
+    }
     public UserModel findByUserEmail(String email) {
         return userRepository.findByEmail(email);
     }
@@ -51,12 +60,14 @@ public class UserService implements UserDetailsService {
         System.out.println("Saving user: " + saveuser);
         userRepository.save(saveuser);
     }
-
+/*findAllByRole(Role.USER)*/
 
     public List<UserModel> getAllUsers() {
         return userRepository.findAllByRole(Role.USER);
     }
-
+    public List<UserModel> getAllUser() {
+        return userRepository.findAll();
+    }
     public void removeUser(Long userId) {
         userRepository.deleteById(userId);
     }

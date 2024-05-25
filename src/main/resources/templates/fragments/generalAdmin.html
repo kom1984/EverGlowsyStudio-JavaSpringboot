@@ -70,12 +70,12 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/Category" sec:authorize="isAuthenticated()">
+                <a class="nav-link" href="/admin/Category" sec:authorize="hasAuthority('ADMIN')">
                     <i class="fas fa-th-list"></i> Category
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/Service" sec:authorize="isAuthenticated()">
+                <a class="nav-link" href="/admin/Service" sec:authorize="hasAuthority('ADMIN')">
                     <i class="fas fa-cut"></i> Service
                 </a>
             </li>
@@ -85,7 +85,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/User" sec:authorize="isAuthenticated()">
+                <a class="nav-link" href="/admin/User" sec:authorize="hasAuthority('ADMIN')">
                     <i class='fas fa-users'></i>
                     Users
                 </a>

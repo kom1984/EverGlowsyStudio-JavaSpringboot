@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Duration;
 
@@ -49,18 +46,25 @@ public class ServiceHandledController {
 
 
     @PostMapping("/saveServices")
-    public String saveService(@Valid @ModelAttribute("services") ServiceHandledModel serviceHandledModel, BindingResult bindingResult, Model model) {
+    public String saveService(
+            @Valid @ModelAttribute("services") ServiceHandledModel serviceHandledModel,
+            BindingResult bindingResult,
+            Model model) {
 
         if (bindingResult.hasErrors()) {
-            // S'il y a des erreurs de validation, retournez au formulaire d'service avec les erreurs
+            // If there are validation errors, return to the service form with errors
             model.addAttribute("categories", categoryService.getAllCategory());
             return "adminTemplates/Service/addService";
         }
 
-        //S'il n'y a aucune erreur de validation, poursuivez le processus d'service
+        // Fetch the category based on the ID set in the serviceHandledModel
+        Long categoryId = serviceHandledModel.getCategory().getId_category();
+        CategoryModel category = categoryService.getCategoryById(categoryId);
+        serviceHandledModel.setCategory(category);
+
+        // If there are no validation errors, continue the saving process
         serviceHandledService.saveService(serviceHandledModel);
         return "redirect:/admin/Service";
-
     }
 
 

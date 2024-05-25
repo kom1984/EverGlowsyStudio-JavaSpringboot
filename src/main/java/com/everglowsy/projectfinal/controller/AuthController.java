@@ -27,6 +27,13 @@ public class AuthController{
 
         if (logout != null)
             model.addAttribute("message", " logged out -success.");
+        /*UserModel currentUser = userService.getCurrentUser();
+        if (currentUser == null) {
+            throw new RuntimeException("Current user is not logged in");
+        }
+
+        // Add the username to the model
+        model.addAttribute("username", currentUser.getFirstName());*/
 
         return "publicTemplates/login";
     }
@@ -55,7 +62,7 @@ public class AuthController{
          }
         @GetMapping({"/admin/User"})
         public String admin(Model model, Authentication authentication) {
-            final List<UserModel> users = userService.getAllUsers();
+            final List<UserModel> users = userService.getAllUser();
             model.addAttribute("users", users);
             return "/adminTemplates/User/userDashboard";
         }

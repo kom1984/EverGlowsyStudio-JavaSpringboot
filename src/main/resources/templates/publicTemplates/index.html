@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head
     th:replace="~{fragments/general.html :: head}">
-
+    <title>EverGlowsyHomePage</title>
 </head>
-<body onload="hideTranslateElements()">
+<body>
 <nav
     th:replace="~{fragments/general.html :: navbar}">
 </nav>
@@ -16,7 +15,7 @@
         <a href="#appointments" class="btn"  id="btnId">Prenez RDV</a>
     </div>
 </div>
-<!-- about section starts -->
+<!-- about section starts-->
 <section id="about" class="about section-padding">
     <div class="container">
         <div class="row">
@@ -230,12 +229,14 @@
                             <h5 class="card-title" th:utext="${service.name_service}"></h5>
                             <div class="d-flex ">
 
-                                    <p class="card-text" th:utext="${service.price}"> </p>
-                                    <span  th:utext="${'&#8364;'+'&nbsp;'+'&nbsp;'+'&nbsp;'}"></span>
+                                    <p class="card-text">
+                                    <span  th:utext="${service.price}+'&#8364;'" class="price"></span>
+                                    </p>
 
-
-                                <div><p class="card-text" th:utext="${service.time_service+'&nbsp;'+'&nbsp;'+'&nbsp;'}"> </p>
-
+                                <div>
+                                    <p class="card-text">
+                                        <span  th:utext="${service.time_service}+'mins'" class="time"></span>
+                                    </p>
                                 </div>
 
                                 <div>
