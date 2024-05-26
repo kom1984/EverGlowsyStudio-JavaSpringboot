@@ -33,9 +33,10 @@ private UserDetailsService userService;
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests((requests) -> requests
                         .requestMatchers( "/","/signup", "/js/**", "/images/**", "/css/**").permitAll() // Permit access to these URLs
-                        .requestMatchers("/admin/**").hasAuthority("ADMIN") // Requires ADMIN authority for admin URLs
-                      //  .requestMatchers("/admin/all","/admin/Appointments").hasRole("EMPLOYEE") // Requires EMPLOYEE authority for admin URLs
-                        .requestMatchers("/admin/**","/admin/Appointments", "/admin/Appointments/**").hasAuthority("EMPLOYEE")
+                        .requestMatchers("/admin/all").hasAnyAuthority("ADMIN", "EMPLOYEE") // Requires ADMIN or EMPLOYEE authority for /admin/all URL
+                        .requestMatchers("/admin/Appointments", "/admin/Appointments/**").hasAnyAuthority("ADMIN", "EMPLOYEE")
+                        .requestMatchers("/admin/**").hasAuthority("ADMIN") //
+
                         .requestMatchers("/bookService/**","/appointmentDetails/**").hasAuthority("USER") // Requires authentication for appointment URLs
                         .anyRequest().authenticated() // Requires authentication for any other request
                 )

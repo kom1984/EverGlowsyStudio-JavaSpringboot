@@ -57,7 +57,7 @@
         </div>
     </header>
 
-<!--d-md-block -->
+
 
 <nav class="col-lg-2 col-md-3 col-4 admin-sidebar" th:fragment = "sidebar">
 
@@ -65,7 +65,7 @@
 
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link " href="/admin/all" sec:authorize="isAuthenticated()">
+                <a class="nav-link " href="/admin/all" sec:authorize="hasAnyAuthority('ADMIN', 'EMPLOYEE')">
                     <i class="fas fa-home"></i> Tableau de Bord
                 </a>
             </li>
@@ -80,7 +80,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/admin/Appointments" sec:authorize="isAuthenticated()">
+                <a class="nav-link" href="/admin/Appointments" sec:authorize="hasAnyAuthority('ADMIN', 'EMPLOYEE')">
                     <i class="fas fa-calendar"></i> Appointments
                 </a>
             </li>
@@ -104,17 +104,6 @@
 
 
 </nav>
-<!--<div th:fragment = "sidebarShrink">
-    <div class="bg-light flex-fill">
-        <div class="p-2 d-md-none d-flex text-white" id="sidebarToggle">
-            <a href="#" class="text-white" data-bs-toggle="sidebarCollapse" data-bs-target="#bdSidebar">
-                <i class="fas fa-bars"></i>
-
-            </a>
-            <span class="ms-3" >Dashboard</span>
-        </div>
-    </div>
-</div>-->
 
 </body>
 </html>
