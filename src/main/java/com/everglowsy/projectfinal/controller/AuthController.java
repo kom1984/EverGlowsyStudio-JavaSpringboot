@@ -20,6 +20,11 @@ public class AuthController{
     @Autowired
     private UserService userService;
 
+    @GetMapping("/403")
+    public String accessDenied() {
+        return "403"; // This refers to a Thymeleaf template named 403.html
+    }
+
     @GetMapping("/login")
     public String login(Model model, String error, String logout) {
         if (error != null)

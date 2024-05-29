@@ -20,7 +20,7 @@ public class ServiceHandledModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="ID_SERVICE")
     private Long id_service;
-    // Le Nom de service ne doit pas être nul ou vide
+    // Le Nom de service ne doit pas être null ou vide
     // le nom de service doit comporter au moins 2 caractères
     @NotBlank(message = "Le nom de service est obligatoire")
     @NotEmpty

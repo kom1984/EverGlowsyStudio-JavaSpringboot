@@ -1,12 +1,11 @@
 package com.everglowsy.projectfinal.model;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -17,24 +16,28 @@ public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_user;
+
     @NotEmpty( message ="ne doit pas être null ou vide")
     private String firstName;
+
     @NotEmpty( message ="ne doit pas être null ou vide")
     private String lastName;
 
     @NotEmpty( message ="ne doit pas être null ou vide")
     @Column(unique = true)
     private String email;
+
     @NotEmpty( message ="ne doit pas être null ou vide")
     private String telephone;
+
     @NotEmpty ( message ="ne doit pas être null ou vide")
-    @Size(min = 12,
-            message = "le mot de passe doit comporter au moins 12 caractères")
+    @Size(min = 12,message = "le mot de passe doit comporter au moins 12 caractères")
     private String password;
+
     @Transient
-    @Size(min = 12,
-            message = "le mot de passe doit comporter au moins 12 caractères")
+    @Size(min = 12, message = "le mot de passe doit comporter au moins 12 caractères")
     private String passwordConfirm;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 

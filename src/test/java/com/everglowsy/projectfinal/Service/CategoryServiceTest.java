@@ -15,7 +15,6 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
-
 class CategoryServiceTest {
     @Mock
     private CategoryRepository categoryRepository;
@@ -37,7 +36,6 @@ class CategoryServiceTest {
         // Verifying that the save method was called with the correct category
         verify(categoryRepository, times(1)).save(categoryToSave);
     }
-
     @Test
     void testGetAllCategory() {
         when(categoryRepository.findAll()).thenReturn(Arrays.asList(

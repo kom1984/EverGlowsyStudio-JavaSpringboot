@@ -49,26 +49,14 @@
                         <td th:utext="${category.id_category}"></td>
                         <td th:utext="${category.name_category}"></td>
                         <td>
-                            <a
-
-                                    th:href="@{'/admin/Category/editCategory/'+${category.id_category}}"
-
-
-                                    class="btn btn-sm btn-warning"
-
-                            >
+                            <a th:href="@{'/admin/Category/editCategory/'+${category.id_category}}"class="btn btn-sm btn-warning">
                                 <i class="fas fa-edit"></i> Edit
                             </a>
-                            <a
-                               th:href="@{'/deleteCategory/'+${category.id_category}}"
-                                    class="btn btn-sm btn-danger"
-                                    id="deleteBtn"
-                            >
+                            <a th:href="@{'/deleteCategory/'+${category.id_category}}" class="btn btn-sm btn-danger" id="deleteBtn">
                                 <i class="fas fa-trash"></i> Delete
                             </a>
                         </td>
                     </tr>
-
                     </tbody>
                 </table>
             </div>
